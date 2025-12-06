@@ -58,7 +58,7 @@ async function crearProducto() {
   // ---------------------------------------------------
   // 4) ENVIAR A APPS SCRIPT
   // ---------------------------------------------------
-  fetch("https://script.google.com/macros/s/XXXXX/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/exec", {
     method: "POST",
     body: JSON.stringify(payload)
   })
