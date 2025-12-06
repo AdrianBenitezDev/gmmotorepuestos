@@ -96,11 +96,8 @@ const htmlFinal = `
     console.error(err);
     alert("Error al subir el producto");
   });
-}
-
- 
-  }
-
+   }
+    }
 
   function convertirImagenABase64(url, index) {
   return new Promise((resolve, reject) => {
