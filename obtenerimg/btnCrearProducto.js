@@ -86,13 +86,14 @@ const imagenesBase64 = await Promise.all(
   // 3) ARMAR PAYLOAD PARA APPS SCRIPT
   // ---------------------------------------------------
   const payload = {
-    htmlFile: {
-      name: nombreDelProducto,
-      content: htmlFinal,
-      categoria: categoria.value
-    },
-    images: imagenesBase64
-  };
+  categoria: categoria.value,
+  htmlFile: {
+    name: nombreDelProducto,
+    content: htmlFinal
+  },
+  images: imagenesBase64
+};
+
 
   console.log("Payload listo:", payload);
 
