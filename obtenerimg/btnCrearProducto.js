@@ -101,10 +101,15 @@ const imagenesBase64 = await Promise.all(
   // 4) ENVIAR A APPS SCRIPT
   // ---------------------------------------------------
 
-  console.log("https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec")
+  let urlExcel=`
+  
+  https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec
+  
+  `;
+  
+  console.log(urlExcel)
 
-  let urlExcel="https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec"
-const fd = new FormData();
+  const fd = new FormData();
 fd.append("data", JSON.stringify(payload));
 
 

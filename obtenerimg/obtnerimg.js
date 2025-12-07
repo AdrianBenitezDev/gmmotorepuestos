@@ -53,8 +53,15 @@ async function extraer() {
     return alert("Pegá la URL del producto");
   }
 
-  const proxy = "https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/exec?url=" 
-                + encodeURIComponent(entrada);
+  // https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/exec
+  
+
+  const proxy = `
+  https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec
+  
+  
+  ?url=` 
+  + encodeURIComponent(entrada);
 
   let html;
   try {
