@@ -100,21 +100,14 @@ const imagenesBase64 = await Promise.all(
   // 4) ENVIAR A APPS SCRIPT
   // ---------------------------------------------------
 
-  
-fetch("https://api.allorigins.win/fetch", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    url: "https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/exec",
+  console.log("https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec")
+  fetch("https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec", {
     method: "POST",
     body: JSON.stringify(payload)
   })
-})
-  .then(r => r.json())
-  .then(data => {
-    console.log("Respuesta Apps Script:", data.contents);
+  .then(r => r.text())
+  .then(resp => {
+    console.log("Respuesta Apps Script:", resp);
     alert("Producto subido correctamente a GitHub");
   })
   .catch(err => {
@@ -122,8 +115,7 @@ fetch("https://api.allorigins.win/fetch", {
     alert("Error al subir el producto");
   });
 
-
-
+  
    }
     }
 
