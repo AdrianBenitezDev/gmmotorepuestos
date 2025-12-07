@@ -71,9 +71,12 @@ const htmlFinal = `
   // ---------------------------------------------------
   // 2) CONVERTIR IMÁGENES SELECCIONADAS A BASE64
   // ---------------------------------------------------
-  const imagenesBase64 = await Promise.all(
-    arrayImgSeleccionadas.map((url, index) => convertirImagenABase64(url, index))
-  );
+const imagenesBase64 = await Promise.all(
+  arrayImgSeleccionadas.map(
+    (url, index) => convertirImagenABase64(url, nuevasRutas[index])
+  )
+);
+
 
     // -------------------------------------------------
   // 3) GENERAMOS UN NUMERO RANDOM PARA EL NAME
@@ -112,7 +115,10 @@ const htmlFinal = `
    }
     }
 
-  function convertirImagenABase64(url, index) {
+
+
+  
+  function convertirImagenABase64(url, nombreFinal) {
   return new Promise((resolve, reject) => {
     fetch(url)
       .then(res => res.blob())
@@ -120,8 +126,8 @@ const htmlFinal = `
         const reader = new FileReader();
         reader.onloadend = () => {
           resolve({
-            name: `imagen_${index}.jpg`,   // ← le das un nombre a cada imagen
-            base64: reader.result.split(',')[1] // solo la parte Base64
+            name: nombreFinal,   // 👈 AHORA USA EL NOMBRE REAL
+            base64: reader.result.split(',')[1]
           });
         };
         reader.onerror = reject;
