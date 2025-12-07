@@ -102,21 +102,26 @@ const imagenesBase64 = await Promise.all(
   // ---------------------------------------------------
 
   console.log("https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec")
-  
-  fetch("https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec", {
+
+  let urlExcel="https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec"
+const fd = new FormData();
+fd.append("data", JSON.stringify(payload));
+
+
+fetch(urlExcel, {
   method: "POST",
-  body: new FormData(Object.entries({ data: JSON.stringify(payload) }))
+  body: fd
 })
-  .then(r => r.text())
-  .then(resp => {
-    console.log("Respuesta Apps Script:", resp);
-    alert("Producto subido correctamente a GitHub");
-  })
-  .catch(err => {
-    console.error(err);
-    alert("Error al subir el producto");
-  });
-;
+.then(r => r.text())
+.then(resp => {
+  console.log("Respuesta Apps Script:", resp);
+  alert("Producto subido correctamente a GitHub");
+})
+.catch(err => {
+  console.error(err);
+  alert("Error al subir el producto");
+});
+
 
    }
     }
