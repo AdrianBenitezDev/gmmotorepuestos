@@ -99,7 +99,7 @@ const imagenesBase64 = await Promise.all(
   // ---------------------------------------------------
   // 4) ENVIAR A APPS SCRIPT
   // ---------------------------------------------------
-  fetch("https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/dev", {
+  fetch("https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/exec", {
     method: "POST",
     body: JSON.stringify(payload)
   })
