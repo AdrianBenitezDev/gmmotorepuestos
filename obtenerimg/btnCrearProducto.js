@@ -102,10 +102,11 @@ const imagenesBase64 = await Promise.all(
   // ---------------------------------------------------
 
   console.log("https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec")
+  
   fetch("https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec", {
-    method: "POST",
-    body: JSON.stringify(payload)
-  })
+  method: "POST",
+  body: new FormData(Object.entries({ data: JSON.stringify(payload) }))
+})
   .then(r => r.text())
   .then(resp => {
     console.log("Respuesta Apps Script:", resp);
@@ -115,8 +116,8 @@ const imagenesBase64 = await Promise.all(
     console.error(err);
     alert("Error al subir el producto");
   });
+;
 
-  
    }
     }
 
