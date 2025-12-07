@@ -31,10 +31,24 @@ const docVirtual = parser.parseFromString(vistaPhtml, "text/html");
 // 3) Obtener TODAS las imágenes dentro del HTML
 const docImagenes = docVirtual.querySelectorAll("img");
 
-// 4) Cambiar el src por ./imagen_0, ./imagen_1, ...
-docImagenes.forEach((img, index) => {
-  img.src = `./imagen_${img.id.replaceAll('img404_','')}.jpg`;  
+
+
+const nuevasRutas = []; // esto lo mandarás al backend
+let numeroRandom= Math.floor(1000 + Math.random() * 9000);
+  let nombreDelProducto = "prod_" + numeroRandom +".html";
+
+
+docImagenes.forEach((img, i) => {
+    const extension = ".jpg"; // o detectás desde img.src si querés
+    const nuevoNombre = `imagen_${i}_${numeroRandom}${extension}`;
+
+    // guardamos el nuevo nombre para el backend
+    nuevasRutas.push(nuevoNombre);
+
+    // modificamos el HTML
+    img.src = `./${nuevoNombre}`;
 });
+
 
 // 5) Convertir el DOM virtual ya modificado en string HTML nuevamente
 const htmlModificado = docVirtual.body.innerHTML;
@@ -64,7 +78,6 @@ const htmlFinal = `
     // -------------------------------------------------
   // 3) GENERAMOS UN NUMERO RANDOM PARA EL NAME
   // ---------------------------------------------------
-  let nombreDelProducto = "prod_" + Math.floor(1000 + Math.random() * 9000) +".html";
 
   // ---------------------------------------------------
   // 3) ARMAR PAYLOAD PARA APPS SCRIPT
