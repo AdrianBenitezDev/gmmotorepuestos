@@ -99,19 +99,31 @@ const imagenesBase64 = await Promise.all(
   // ---------------------------------------------------
   // 4) ENVIAR A APPS SCRIPT
   // ---------------------------------------------------
-  fetch("https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/exec", {
+
+  
+fetch("https://api.allorigins.win/fetch", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    url: "https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/exec",
     method: "POST",
     body: JSON.stringify(payload)
   })
-  .then(r => r.text())
-  .then(resp => {
-    console.log("Respuesta Apps Script:", resp);
+})
+  .then(r => r.json())
+  .then(data => {
+    console.log("Respuesta Apps Script:", data.contents);
     alert("Producto subido correctamente a GitHub");
   })
   .catch(err => {
     console.error(err);
     alert("Error al subir el producto");
   });
+
+
+
    }
     }
 
