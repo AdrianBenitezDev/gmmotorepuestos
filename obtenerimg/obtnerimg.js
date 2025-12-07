@@ -8,22 +8,22 @@ const iconoCheck = `
 
 const categoriasTextos = [
   "Seleccione una categoria",
-  "MOTOR",
-  "TRANSMISIÓN",
-  "SISTEMA DE FRENOS",
-  "ELECTRICIDAD / ILUMINACIÓN",
-  "SUSPENSIÓN",
-  "CUBIERTAS Y LLANTAS",
-  "ESCAPES",
-  "CARROCERÍA Y PLÁSTICOS",
-  "ACCESORIOS",
-  "MANTENIMIENTO"
+  "motor",
+  "transmision",
+  "frenos",
+  "electricidad e iluminación",
+  "suspension",
+  "cubiertas y llantas",
+  "escapes",
+  "carroceria y plasticos",
+  "accesorios",
+  "mantenimiento"
 ];
 
 let eleCategoria=document.getElementById("categorias");
 
 categoriasTextos.forEach(e=>{
-  eleCategoria.innerHTML+=`<option value="${e}">${e}</option>`
+  eleCategoria.innerHTML+=`<option value="${e}">${e.toUpperCase()}</option>`
 })
  
 
