@@ -111,7 +111,8 @@ fd.append("data", JSON.stringify(payload));
 
 
 fetch(urlExcel, {
-  method: "POST",
+ method: "POST",
+     mode: "no-cors",
   body: fd
 })
 .then(r => r.text())
