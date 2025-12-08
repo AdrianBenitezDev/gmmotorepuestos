@@ -55,25 +55,22 @@ async function extraer() {
 
   // https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/exec
   
+const proxy =
+  "https://script.google.com/macros/s/AKfycbx-YwE7fkQKIyiQV13JPs0iIxRWw-nohtciTnR0Gb2G_ef6qtWSHSDEro_ipWeiBnTtKg/exec?url=" +
+  encodeURIComponent(entrada);
 
-  const proxy = `
-  
-  https://script.google.com/macros/s/AKfycbx-YwE7fkQKIyiQV13JPs0iIxRWw-nohtciTnR0Gb2G_ef6qtWSHSDEro_ipWeiBnTtKg/exec
-  
-  ?url=` 
-  + encodeURIComponent(entrada);
+let html;
+try {
+  html = await fetch(proxy).then(r => r.text());
+} catch (e) {
+  spinFalse();
+  console.error(e);
+  alert("No se pudo obtener la página. Revisa la consola.");
+  btn.disabled = true;
+  btn.className = "btnDisabled";
+  return;
+}
 
-  let html;
-  try {
-    html = await fetch(proxy).then(r => r.text());
-  } catch (e) {
-    spinFalse();
-    console.error(e);
-    alert("No se pudo obtener la página. Revisa la consola.");
-    btn.disabled = true;
-    btn.className = "btnDisabled";
-    return;
-  }
 
 
 
