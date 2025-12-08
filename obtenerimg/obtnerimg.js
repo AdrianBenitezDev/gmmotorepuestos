@@ -64,7 +64,7 @@ async function extraer() {
 
 
 
-
+//el proxi que usamos es el de producción
 const proxy =
   "https://script.google.com/macros/s/AKfycbx-YwE7fkQKIyiQV13JPs0iIxRWw-nohtciTnR0Gb2G_ef6qtWSHSDEro_ipWeiBnTtKg/exec?url=" +
   encodeURIComponent(entrada);

@@ -101,31 +101,35 @@ const imagenesBase64 = await Promise.all(
   // 4) ENVIAR A APPS SCRIPT
   // ---------------------------------------------------
 
+  //para pruebas
+  //let urlExcel="https://script.google.com/macros/s/AKfycbzjWcAHodsQeqmYdZfkifFIccsS5gYSjPwF1pCSmP0p/dev";
+ 
+
+  //para producción
   let urlExcel="https://script.google.com/macros/s/AKfycbx-YwE7fkQKIyiQV13JPs0iIxRWw-nohtciTnR0Gb2G_ef6qtWSHSDEro_ipWeiBnTtKg/exec";
-  
-  console.log(urlExcel)
+   console.log(urlExcel)
 
-  const fd = new FormData();
-fd.append("data", JSON.stringify(payload));
-
-
-
-fetch(urlExcel, {
- method: "POST",
-     mode: "no-cors",
-  body: fd
+  try {
+  resp = await fetch(urlExcel,{
+  method: "POST", headers: {
+    "Content-Type": "text/plain"  // 👈 TRUCO CLAVE: NO HAY OPTIONS
+  },
+  body: JSON.stringify(payload)
 })
-.then(r => r.text())
-.then(resp => {
-  console.log("Respuesta Apps Script:", resp);
-  alert("Producto subido correctamente a GitHub");
+ const texto = await resp.text(); // <-- aquí está la respuesta REAL
+  console.log("Respuesta del backend:", texto);
+
   spinFalse();
-})
-.catch(err => {
-  console.error(err);
-  alert("Error al subir el producto");
+  alert("datos cargados correctmente")
+} catch (e) {
   spinFalse();
-});
+  console.log("this error")
+  console.error(e);
+ 
+  return;
+}
+
+
 
 
    }

@@ -40,14 +40,8 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE PRODUCTOS -->
-    <section class="productos">
-        <h2>Productos Destacados</h2>
-        <p>Los mejores repuestos para tu moto, al mejor precio.</p>
 
-        <div class="grid">
-
-            <!-- CARD 1 -->
+        <!-- CARD 1 -->
             <!-- <div class="card">
                 <img src="producto1.jpg" alt="Producto 1">
                 <h3>Bujía NGK</h3>
@@ -55,118 +49,22 @@
                 <div class="precio">$3500</div>
                 <button>Agregar al Carrito</button>
             </div> -->
-<div class="card">
-    <img src="motor.jpg" alt="Motor">
-    <h3>MOTOR</h3>
-    <ul>
-        <li>Pistón y aros 110cc</li>
-        <li>Cilindro 150cc completo</li>
-        <li>Bujía NGK CR7HSA</li>
-    </ul>
-    <a href="./categorias/motor.html">Ver Catálogo</a>
-</div>
-
-<div class="card">
-    <img src="transmision.jpg" alt="Transmisión">
-    <h3>TRANSMISIÓN</h3>
-    <ul>
-        <li>Kit de transmisión 428 (cadena + corona + piñón)</li>
-        <li>Embrague completo 110cc</li>
-        <li>Piñón 14 dientes reforzado</li>
-    </ul>
-    <button>Ver Catálogo</button>
-</div>
-
-<div class="card">
-    <img src="frenos.jpg" alt="Sistema de frenos">
-    <h3>SISTEMA DE FRENOS</h3>
-    <ul>
-        <li>Pastillas de freno delanteras</li>
-        <li>Disco de freno ventilado</li>
-        <li>Bomba de freno hidráulica</li>
-    </ul>
-    <button>Ver Catálogo</button>
-</div>
-
-<div class="card">
-    <img src="electrico.jpg" alt="Electricidad e iluminación">
-    <h3>ELECTRICIDAD / ILUMINACIÓN</h3>
-    <ul>
-        <li>Batería 12v 5ah gel</li>
-        <li>Regulador de voltaje 5 cables</li>
-        <li>Kit luces LED H4</li>
-    </ul>
-    <button>Ver Catálogo</button>
-</div>
-
-<div class="card">
-    <img src="suspension.jpg" alt="Suspensión">
-    <h3>SUSPENSIÓN</h3>
-    <ul>
-        <li>Amortiguadores traseros cromados</li>
-        <li>Barral de horquilla 110cc</li>
-        <li>Retenes de horquilla 31mm</li>
-    </ul>
-    <button>Ver Catálogo</button>
-</div>
-
-<div class="card">
-    <img src="llantas.jpg" alt="Cubiertas y llantas">
-    <h3>CUBIERTAS Y LLANTAS</h3>
-    <ul>
-        <li>Cubierta 90/90-17</li>
-        <li>Cámara reforzada 17"</li>
-        <li>Llantas de aleación 110cc</li>
-    </ul>
-    <button>Ver Catálogo</button>
-</div>
-
-<div class="card">
-    <img src="escape.jpg" alt="Escape">
-    <h3>ESCAPE</h3>
-    <ul>
-        <li>Caño de escape deportivo</li>
-        <li>Silenciador universal</li>
-        <li>Junta de escape metálica</li>
-    </ul>
-    <button>Ver Catálogo</button>
-</div>
-
-<div class="card">
-    <img src="carroceria.jpg" alt="Carrocería">
-    <h3>CARROCERÍA Y PLÁSTICOS</h3>
-    <ul>
-        <li>Guardabarros delantero 110cc</li>
-        <li>Cacha lateral izquierda</li>
-        <li>Funda de asiento antideslizante</li>
-    </ul>
-    <button>Ver Catálogo</button>
-</div>
-
-<div class="card">
-    <img src="accesorios.jpg" alt="Accesorios">
-    <h3>ACCESORIOS</h3>
-    <ul>
-        <li>Espejos retrovisores cromados</li>
-        <li>Soporte de celular con cargador</li>
-        <li>Puños deportivos</li>
-    </ul>
-    <button>Ver Catálogo</button>
-</div>
-
-<div class="card">
-    <img src="mantenimiento.jpg" alt="Mantenimiento">
-    <h3>MANTENIMIENTO</h3>
-    <ul>
-        <li>Aceite 20W50 semisintético</li>
-        <li>Grasa multipropósito</li>
-        <li>Limpiacadenas aerosol</li>
-    </ul>
-    <button>Ver Catálogo</button>
-</div>
 
 
+
+    <!-- SECCIÓN DE PRODUCTOS -->
+    <section class="productos" >
+        <h2>Productos Destacados</h2>
+        <p>Los mejores repuestos para tu moto, al mejor precio.</p>
+
+        <div class="grid" id="CategoriaAndProductos">
+        
         </div>
+
+        <iframe id="visorProducto" style="width:100%; height:600px; border:none;"></iframe>
+
+
+
     </section>
 
 </body>
@@ -254,5 +152,8 @@
         <a href="./obtenerimg/obtenerImg.html" target="_blank">Administrar</a>
     </div>
 </footer>
+
+<script src="./cargarCategorias.js"></script>
+<script src="./generarCardProductos.js"></script>
 
 </html>

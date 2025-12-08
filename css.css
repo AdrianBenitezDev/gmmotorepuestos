@@ -127,7 +127,7 @@ body {
     margin-bottom: 12px;
 }
 
-button {
+button, .button {
     padding: 10px 20px;
     background: #d80000;
     color: white;
@@ -139,7 +139,7 @@ button {
 }
 
 
-button:hover {
+button:hover, .button:hover  {
     background: #a60000;
 }
 
