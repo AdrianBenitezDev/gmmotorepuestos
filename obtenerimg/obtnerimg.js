@@ -52,9 +52,15 @@ async function extraer() {
     spinFalse();
     return alert("Pegá la URL del producto");
   }
-
-  // https://script.google.com/macros/s/AKfycbzBf7RIRprq3RyAuP5KVgjGKBhvKYSzrRRlYqmkVoYzzebGSHpDChDhusqcgrZEif6H1Q/exec
   
+
+  
+  // FETCH
+
+
+
+
+
 const proxy =
   "https://script.google.com/macros/s/AKfycbx-YwE7fkQKIyiQV13JPs0iIxRWw-nohtciTnR0Gb2G_ef6qtWSHSDEro_ipWeiBnTtKg/exec?url=" +
   encodeURIComponent(entrada);

@@ -15,8 +15,8 @@ async function crearProducto() {
     alert("debe seleccionar alguna imagen para el producto")
   }else{
    
-
-  alert("Enviando datos…");
+spinTrue();
+  //  alert("Enviando datos…");
 
   // ---------------------------------------------------
   // 1) TOMAR EL HTML REAL DE LA VISTA PREVIA
@@ -101,16 +101,13 @@ const imagenesBase64 = await Promise.all(
   // 4) ENVIAR A APPS SCRIPT
   // ---------------------------------------------------
 
-  let urlExcel=`
-  
-  https://script.google.com/macros/s/AKfycbyXg39qNkHX6rvhMkUet9I6hS-HgF7e8nAvL2jNdIsNyaZ8IyLVxUdBrhDLP_e_D7daaA/exec
-  
-  `;
+  let urlExcel="https://script.google.com/macros/s/AKfycbx-YwE7fkQKIyiQV13JPs0iIxRWw-nohtciTnR0Gb2G_ef6qtWSHSDEro_ipWeiBnTtKg/exec";
   
   console.log(urlExcel)
 
   const fd = new FormData();
 fd.append("data", JSON.stringify(payload));
+
 
 
 fetch(urlExcel, {
@@ -121,10 +118,12 @@ fetch(urlExcel, {
 .then(resp => {
   console.log("Respuesta Apps Script:", resp);
   alert("Producto subido correctamente a GitHub");
+  spinFalse();
 })
 .catch(err => {
   console.error(err);
   alert("Error al subir el producto");
+  spinFalse();
 });
 
 
