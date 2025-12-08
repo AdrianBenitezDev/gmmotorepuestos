@@ -27,7 +27,7 @@ const categoriasTextos = [
 let eleCategoria=document.getElementById("categorias");
 
 categoriasTextos.forEach((e,index)=>{
-  eleCategoria.innerHTML+=`<option ${index==2?"select":''} value="${e}">${e.toUpperCase()}</option>`
+  eleCategoria.innerHTML+=`<option ${index==2?"selected":''} value="${e}">${e.toUpperCase()}</option>`
 })
  
 
