@@ -1,5 +1,9 @@
 const btn = document.getElementById("btnCP");
 
+//luego elimnar
+document.getElementById("descripcionP").value = "eliminar para la versión de producción";
+
+
 const iconoCheck = `
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
   <path d="M5 13l4 4L19 7" stroke="#0f0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -22,7 +26,7 @@ const categoriasTextos = [
 
 let eleCategoria=document.getElementById("categorias");
 
-categoriasTextos.forEach(e,index=>{
+categoriasTextos.forEach((e,index)=>{
   eleCategoria.innerHTML+=`<option ${index==2?"select":''} value="${e}">${e.toUpperCase()}</option>`
 })
  
@@ -54,7 +58,7 @@ async function extraer() {
   }
   
 
-  
+
   // FETCH
 
 
