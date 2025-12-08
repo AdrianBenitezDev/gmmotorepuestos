@@ -26,18 +26,16 @@ async function cargarProductos(id) {
         }
     });
 }
-
 function mostrarProducto(url) {
-    document.getElementById("visorProducto").src = url;
-    // Hacer scroll suave hacia el visor
-    const visor = document.getElementById("visorProducto");
+    fetch(url)
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("visorProducto").innerHTML = html;
 
-    visor.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+            document.getElementById("visorProducto")
+                .scrollIntoView({ behavior: "smooth", block: "start" });
+        });
 }
-
 
 // cargarProductos();
 
