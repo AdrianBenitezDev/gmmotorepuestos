@@ -40,13 +40,13 @@ let numeroRandom= Math.floor(1000 + Math.random() * 9000);
 
 docImagenes.forEach((img, i) => {
     const extension = ".jpg"; // o detectás desde img.src si querés
-    const nuevoNombre = `https://raw.githubusercontent.com/AdrianBenitezDev/gmmotorepuestosBackend/main/categorias/${categoria.value}/imagen_${i}_${numeroRandom}${extension}`;
+    const nuevoNombre = `imagen_${i}_${numeroRandom}${extension}`;
 
     // guardamos el nuevo nombre para el backend
     nuevasRutas.push(nuevoNombre);
 
     // modificamos el HTML
-    img.src = `${nuevoNombre}`;
+    img.src = `https://raw.githubusercontent.com/AdrianBenitezDev/gmmotorepuestosBackend/main/categorias/${categoria.value}/${nuevoNombre}`;
 });
 
 
