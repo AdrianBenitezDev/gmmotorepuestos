@@ -39,7 +39,10 @@ let numeroRandom= Math.floor(1000 + Math.random() * 9000);
 
 
 docImagenes.forEach((img, i) => {
-    const extension = ".jpg"; // o detectás desde img.src si querés
+
+  if(arrayImgSeleccionadas[i]){
+
+     const extension = ".jpg"; // o detectás desde img.src si querés
     const nuevoNombre = `imagen_${i}_${numeroRandom}${extension}`;
 
     // guardamos el nuevo nombre para el backend
@@ -47,7 +50,12 @@ docImagenes.forEach((img, i) => {
 
     // modificamos el HTML
     img.src = `https://raw.githubusercontent.com/AdrianBenitezDev/gmmotorepuestosBackend/main/categorias/${categoria.value}/${nuevoNombre}`;
-});
+
+
+  }else{
+    
+  }
+   });
 
 
 // 5) Convertir el DOM virtual ya modificado en string HTML nuevamente
