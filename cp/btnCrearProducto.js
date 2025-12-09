@@ -29,7 +29,10 @@ const parser = new DOMParser();
 const docVirtual = parser.parseFromString(vistaPhtml, "text/html");
 
 // 3) Obtener TODAS las imágenes dentro del HTML
-const docImagenes = docVirtual.querySelectorAll("img");
+const docImagenes = docVirtual.getElementsByClassName("img404");
+
+//ordenamos los img por id creciente
+//docImagenes.sort(docImagenes.id )
 
 
 
@@ -40,7 +43,7 @@ let numeroRandom= Math.floor(1000 + Math.random() * 9000);
 
 docImagenes.forEach((img, i) => {
 
-  if(arrayImgSeleccionadas[i]){
+
 
      const extension = ".jpg"; // o detectás desde img.src si querés
     const nuevoNombre = `imagen_${i}_${numeroRandom}${extension}`;
@@ -52,9 +55,6 @@ docImagenes.forEach((img, i) => {
     img.src = `https://raw.githubusercontent.com/AdrianBenitezDev/gmmotorepuestosBackend/main/categorias/${categoria.value}/${nuevoNombre}`;
 
 
-  }else{
-    
-  }
    });
 
 
