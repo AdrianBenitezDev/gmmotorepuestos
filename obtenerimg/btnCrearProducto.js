@@ -46,7 +46,7 @@ docImagenes.forEach((img, i) => {
     nuevasRutas.push(nuevoNombre);
 
     // modificamos el HTML
-    img.src = `./${nuevoNombre}`;
+    img.src = `${nuevoNombre}`;
 });
 
 
