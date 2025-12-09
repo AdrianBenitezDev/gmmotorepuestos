@@ -59,7 +59,7 @@ const htmlFinal = `
 <head>
   <meta charset="UTF-8" />
   <title>${titulo}</title>
-  <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="./vistaPrevia.css"> 
 </head>
 <body>
   ${htmlModificado}
