@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM MotoRepuestos</title>
+    <link rel="stylesheet" href="css.css">
+     <!-- <link rel="stylesheet" href="./vistaPrevia.css"> -->
+      <style>
+        .loginDiv{
+            padding: 10px; background-color: white; border-radius: 12px;
+
+        }
+
+        span{
+            color: black;
+        }
+      </style>
+</head>
+<body>
+
+    <!-- Fondo oscuro -->
+    <div class="overlay"></div>
+
+    <!-- ENCABEZADO -->
+    <header class="header">
+        <img src="logogm.png" class="logo" alt="GM MotoRepuestos">
+        <h1>GM MotoRepuestos</h1>
+        <P>Acceder</P>
+   
+        
+    </header>
+
+    <section class="productos">
+         <div class="gridIndex" style="border-radius: 12px; border: 2px solid black;">
+
+            <!-- CARD 1 -->
+          <div class="column loginDiv" >
+            
+            <div class="row">
+                <span>Usuario</span>
+                <input type="text" id="user">
+            </div>
+            
+            <div class="row">
+                <span>Contraseña</span>
+                <input type="password" id="pass">
+            </div>
+
+            <button onclick="logear()">Acceder</button>
+
+
+          </div>
+        </div>
+    </section>
+
+
+
+</body>
+<footer class="footer">
+   
+    <!-- COPY -->
+    <div class="footer-copy">
+        © 2025 GM MotoRepuestos — Todos los derechos reservados.
+        <a href="../index.html" >Inico</a>
+    </div>
+</footer>
+
+<script src="./login.js"></script>
+
+</html>
