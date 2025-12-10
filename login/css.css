@@ -26,17 +26,6 @@ body {
     box-sizing: border-box;
 }
 
-/* FONDO */
-body {
-    font-family: Arial, sans-serif;
-    background-image: url("background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: white;
-    padding-bottom: 50px;
-    position: relative;
-}
 /* 
 .overlay {
     position: fixed;
