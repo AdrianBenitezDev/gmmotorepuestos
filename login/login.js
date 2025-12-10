@@ -13,7 +13,9 @@ async function  logear(){
     
      const texto = await resp.text(); // <-- aquí está la respuesta REAL
   if(texto!=="DATOS ERRONEOS"){
-    window.location.href = texto;
+    console.log(texto)
+    window.location.href = "https://gmmotorepuestos-backend.vercel.app";
+
   }else{
     alert("Error en las credenciales")
   };
