@@ -20,6 +20,14 @@
         span{
             color: black;
         }
+
+        .row{
+            margin: 12px;
+        }
+
+        .divcolumn{
+            display: flex;
+        }
       </style>
 </head>
 <body>
@@ -42,10 +50,13 @@
             <!-- CARD 1 -->
           <div class="column loginDiv" >
             
+          <div class="divcolumn">
+              
             <div class="row">
                 <span>Usuario</span>
                 <input type="text" id="user">
             </div>
+            
             
             <div class="row">
                 <span>Contraseña</span>
@@ -54,6 +65,7 @@
 
             <button onclick="logear()">Acceder</button>
 
+          </div>
 
           </div>
         </div>
