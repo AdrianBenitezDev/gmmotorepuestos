@@ -3,6 +3,7 @@ async function  logear(){
     let pass=document.getElementById("pass").value;
     let direccionUrl="https://script.google.com/macros/s/AKfycbx-YwE7fkQKIyiQV13JPs0iIxRWw-nohtciTnR0Gb2G_ef6qtWSHSDEro_ipWeiBnTtKg/exec";
 
+spinTrue()
 
   let resp= await fetch(direccionUrl,{
         method:'POST', headers: {
@@ -13,10 +14,21 @@ async function  logear(){
     
      const texto = await resp.text(); // <-- aquí está la respuesta REAL
   if(texto!=="DATOS ERRONEOS"){
+     spinFalse()
     console.log(texto)
     window.location.href = "https://gmmotorepuestos-backend.vercel.app";
 
   }else{
+     spinFalse()
     alert("Error en las credenciales")
   };
+}
+
+
+// ====== SPINNER ======
+function spinFalse() {
+  document.getElementById('overlay').style.display = "none";
+}
+function spinTrue() {
+  document.getElementById('overlay').style.display = "flex";
 }
