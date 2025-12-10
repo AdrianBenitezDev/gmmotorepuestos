@@ -12,5 +12,9 @@ async function  logear(){
     })
     
      const texto = await resp.text(); // <-- aquí está la respuesta REAL
-  console.log("Respuesta del backend:", texto);
+  if(texto.includes("https")){
+    window.location.href = texto;
+  }else{
+    alert("Error en las credenciales")
+  };
 }
