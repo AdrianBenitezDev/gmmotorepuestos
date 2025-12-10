@@ -12,7 +12,7 @@ async function  logear(){
     })
     
      const texto = await resp.text(); // <-- aquí está la respuesta REAL
-  if(texto.includes("https")){
+  if(texto!=="DATOS ERRONEOS"){
     window.location.href = texto;
   }else{
     alert("Error en las credenciales")
