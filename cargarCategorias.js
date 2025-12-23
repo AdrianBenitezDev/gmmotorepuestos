@@ -14,17 +14,27 @@ const categoriasTextos = [
   "mantenimiento"
 ];
 
+
 function cargarCategorias(){
 
 
 let divCategoria=document.getElementById("CategoriaAndProductos");
 
+   // <img src="./Image404.png" alt="${categoria}">
+
 categoriasTextos.forEach((categoria,index)=>{
+
+  if(index==0){
+    return
+  }
 
             divCategoria.innerHTML+=`
             <div class="card">
-                <img src="./Image404.png" alt="${categoria}">
+                                            
+                <img src="./imagenes/img_${categoria}.png" alt="">
+                            
                 <h3>${categoria}</h3>
+
                 <br>
                 
                 <a class="button" onclick="cargarProductos(${index})">Ver Catálogo</a>

@@ -6,11 +6,27 @@
     <title>GM MotoRepuestos</title>
     <link rel="stylesheet" href="css.css">
      <!-- <link rel="stylesheet" href="./vistaPrevia.css"> -->
+      <link rel="stylesheet" href="./stylePedido.css">
 </head>
 <body>
 
     <!-- Fondo oscuro -->
     <div class="overlay"></div>
+
+
+    <!-- div de carrito -->
+     <div class="container-Pedido">
+
+                <div class="btn2 btn-primary icon-container row" onclick="verPedidos()">
+                    <div class="column">
+                        <img class="iconPedido" src="./imagenes/delivery.png" style="width: 30px; height: 30px;">
+                        <span class="tuPedido">Carrito</span>  
+                    </div>
+                    <span id="contadorCarrito" class="badge">0</span>
+                </div>
+
+    
+    </div>
 
     <!-- ENCABEZADO -->
     <header class="header">
@@ -55,9 +71,14 @@
 
     <!-- SECCIÓN DE PRODUCTOS -->
     <section class="productos" >
+       
         <h2>Productos Destacados</h2>
         <p>Los mejores repuestos para tu moto, al mejor precio.</p>
         <br>
+        
+        <div  class="card" id="categoriaSeleccionada"></div>
+        
+         <br>
 
         <div class="gridIndex" id="CategoriaAndProductos">
         
@@ -154,6 +175,7 @@
     </div>
 </footer>
 
+<script src="./carrito.js"></script>
 <script src="./cargarCategorias.js"></script>
 <script src="./generarCardProductos.js"></script>
 
