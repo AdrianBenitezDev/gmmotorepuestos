@@ -1,13 +1,13 @@
-window.onload = traerCategorias();
+//window.onload = traerCategorias();
 
 let arrayPedido=[]
 
 async function traerCategorias() {
 
 
-  spinerSC(true);
+  spiner(true);
 
-  const url = "https://script.google.com/macros/s/AKfycbxT5zeNWK5O_z3Na_XVU_Rz6d8yw_uI2AZS94gp9XXrtBEzR4hMvlzqRUGuhezyytxa/exec?acc=th";
+  const url = "";
 
   try {
     const res = await fetch(url);
@@ -18,13 +18,13 @@ async function traerCategorias() {
     data.forEach(categoria => {
         divCategoria.innerHTML+=`<button class="btn btn-primary" onclick='traerPrecios("${categoria}")'>${categoria}</button>`;
     });
-      spinerSC(false);
+      spiner(false);
     return data; // es un array con los nombres de las hojas
 
     
   } catch (error) {
     console.error("Error obteniendo categorías:", error);
-      spinerSC(false);
+      spiner(false);
        let divCategoria=document.getElementById("categorias");
       divCategoria.innerHTML=`<p>Revise su conexión a Internet!</p>`;
     return ["MILANESAS"];
@@ -42,7 +42,7 @@ document.getElementById("titleCategoria").scrollIntoView({
 
 
        divPrecios.innerHTML='';
-         spinerC(true);
+         spiner(true);
 
 
    // let catFormateada=cat.replaceAll(' ','22%')
@@ -95,13 +95,13 @@ botones.forEach((btn, index) => {
 
 
    
-    spinerC(false);
+    spiner(false);
     
     return data; // es un array con los nombres de las hojas
   } catch (error) {
     
     let divPrecios=document.getElementById('divPrecios');
-    spinerC(false);
+    spiner(false);
     divPrecios.innerHTML=`<p>Revise su conexión a Internet!</p>`
     console.error("Error obteniendo categorías:", error);
     return []
@@ -129,16 +129,9 @@ function addProduct(pro) {
 
 //let isLoading = false;
 
-function spinerSC(boleano) {
+function spiner(boleano) {
 
-    document.getElementById("spinnerSC").style.display =
-        boleano ? "block" : "none";
-}
-
-
-function spinerC(boleano) {
-
-    document.getElementById("spinnerC").style.display =
+    document.getElementById("spinner").style.display =
         boleano ? "block" : "none";
 }
 

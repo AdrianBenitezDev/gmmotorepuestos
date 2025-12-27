@@ -5,14 +5,17 @@
     <meta-name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GM MotoRepuestos</title>
     <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="spin.css">
      <!-- <link rel="stylesheet" href="./vistaPrevia.css"> -->
       <link rel="stylesheet" href="./stylePedido.css">
+      <link rel="stylesheet" href="vistaPrevia.css">
 </head>
 <body>
 
     <!-- Fondo oscuro -->
-    <div class="overlay"></div>
-
+<div class="overlay" id="overlay">
+        <div id="spinner" class="spinner" aria-hidden="true"></div>
+</div>
 
     <!-- div de carrito -->
      <div class="container-Pedido">
@@ -38,24 +41,20 @@
         
     </header>
 
-    <section class="productos">
-         <div class="gridIndex">
+     <div class="card row" id="DivSeach">
 
-            <!-- CARD 1 -->
-            <div class="card">
-                <h3>Mecánica de Motos</h3>
-                <ul>
-                    <li>Service</li>
-                    <li>Carburación</li>
-                    <li>Calibreación de Transmisión</li>
-                    <li>Carga de Bateria</li>
-                    <li>Revisión y Reparación de luces</li>
-                    <li>Mantenimiento General</li>
-                </ul>
-                
-            </div>
+        <div  class="row" style="justify-content:center;" id="categoriaSeleccionada"></div>
+        
+
+       <div class="column">
+        <h3>Buscar producto</h3>
+         <div class="row">
+            <input type="text" placeholder="Ingrese una palabra clave para inciar la busqueda" value="bicicleta" id="inputBusqueda">
+        <button id="btnBuscar">Buscar</button>
+        <button id="btnBorrar">Borrar</button>
         </div>
-    </section>
+       </div>
+     </div>
 
 
         <!-- CARD 1 -->
@@ -72,15 +71,28 @@
     <!-- SECCIÓN DE PRODUCTOS -->
     <section class="productos" >
        
-        <h2>Productos Destacados</h2>
+        <!-- <h2>Productos Destacados</h2>
         <p>Los mejores repuestos para tu moto, al mejor precio.</p>
-        <br>
+        <br> -->
+        <div id="divBusqueda" >
         
-        <div  class="card" id="categoriaSeleccionada"></div>
-        
-         <br>
+            <div class="overlayBusqueda" id="overlayBusqueda">
 
-        <div class="gridIndex" id="CategoriaAndProductos">
+                <div  class="spinner" aria-hidden="true"></div>
+            
+            </div>
+            <div id="contenidoBusqueda">
+                <h3 id="h3Resultados"></h3>
+
+            </div>
+            
+        </div>
+
+        <div class="gridIndex" id="DivCategorias">
+        
+        </div>
+
+         <div class="column" id="DivProductos">
         
         </div>
 
@@ -178,5 +190,7 @@
 <script src="./carrito.js"></script>
 <script src="./cargarCategorias.js"></script>
 <script src="./generarCardProductos.js"></script>
+<script src="./busqueda.js"></script>
+<script src="./spinner.js"></script>
 
 </html>

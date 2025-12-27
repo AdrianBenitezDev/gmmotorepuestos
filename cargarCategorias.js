@@ -17,10 +17,22 @@ const categoriasTextos = [
 
 function cargarCategorias(){
 
+document.getElementById("DivProductos").innerHTML="";
 
-let divCategoria=document.getElementById("CategoriaAndProductos");
+document.getElementById("visorProducto").innerHTML="";
+
+
+let divCategoria=document.getElementById("DivCategorias");
 
    // <img src="./Image404.png" alt="${categoria}">
+
+divCategoria.innerHTML='';
+document.getElementById("categoriaSeleccionada").innerHTML=`
+    
+    <button onclick="cargarCategorias()">Inicio</button>
+    <h3 style="margin-left:15px">Seleccione una Categoria</h3>
+    
+    `; 
 
 categoriasTextos.forEach((categoria,index)=>{
 

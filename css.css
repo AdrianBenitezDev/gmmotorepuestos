@@ -87,6 +87,7 @@ background: linear-gradient(270deg, #000000a1, #a0a0a0);
     box-shadow: 0 6px 14px rgba(0,0,0,0.25);
     text-align: center;
     transition: 0.3s;
+    width: 100%;
 }
 
 .card:hover {

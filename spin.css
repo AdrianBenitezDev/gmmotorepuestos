@@ -2,7 +2,7 @@
   width: 200px;
   height: 200px;
   border: 10px solid rgba(0,0,0,0.12);
-  border-top-color: rgba(0,0,0,0.8);
+  border-top-color: rgb(245, 5, 5);
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
   display: inline-block;
@@ -12,6 +12,23 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+.overlayBusqueda{ 
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px;
+
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(235, 215, 215, 0.575);
+    z-index: 100;
+
+}
+
+
 .overlay{ top: 0;
     left: 0;
     width: 100%;
