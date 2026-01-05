@@ -161,6 +161,10 @@ button:hover, .button:hover  {
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
+.divProductos{
+    width: 100%;
+}
+
 .footer-box p,
 .footer-box a {
     font-size: 0.9rem;

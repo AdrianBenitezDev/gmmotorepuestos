@@ -1,8 +1,13 @@
 const owner = "AdrianBenitezDev";
 const repo = "gmmotorepuestosBackend";
 let jsonActual={};
+let categoriaActual=1;
 
+
+//traemos los productos del json y lo guardamos en una varuable "JSONACTUAL"
 async function cargarProductos(id) {
+
+  categoriaActual=id
     
     //let apiURL = `https://api.github.com/repos/${owner}/${repo}/contents/categorias/${categoriasTextos[id]}`;
     //raw
@@ -15,15 +20,14 @@ async function cargarProductos(id) {
 
     jsonActual=archivos;
 
-    console.log("archivos:")
+    console.log("JSON ACTUAL:")
 
     console.log(archivos)
 
     //restablecemos el div que contien las categorias
     document.getElementById("DivCategorias").innerHTML="";
 
-    let contenedor = document.getElementById("DivProductos");
-    contenedor.innerHTML = ""; // limpiar antes
+   
 
     // --------------------------------------------
     // ------------ cabecera de categoria----------
@@ -39,31 +43,114 @@ async function cargarProductos(id) {
     // ------------ FIN de categoria --------------
     // --------------------------------------------
 
-    Object.values(archivos).forEach(json => {
 
-            
+
+
+  panelProductoNav(1)
+
+}
+
+function navMas(actual){
+  let maximo=Number(Object.values(jsonActual).length)
+  console.log(maximo)
+  let numNav = Math.floor(maximo / 10);
+    console.log(numNav)
+  if(actual<numNav){
+
+    let newActual=actual+1;
+
+ panelProductoNav(newActual)
+
+  }
+}
+
+function navMenos(actual){
+   if(actual>1){
+
+    let newActual=actual-1;
+
+ panelProductoNav(newActual)
+   
+}
+
+}
+
+function panelProductoNav(numeroNavActual){
+
+   let contenedorNav = document.getElementById("DivProductos");
+    contenedorNav.innerHTML = ""; // limpiar antes
+
+  let cantidadProductos=Object.values(jsonActual).length;
+
+  //calculamos los intervamos del nav
+  let inicioNav=(Number(numeroNavActual)*10)-10;
+  
+  let finNav=inicioNav+10;
+
+  console.log(cantidadProductos)//1
+  console.log(inicioNav)//0
+  console.log(finNav)//10
+
+  //obtenemos los nav con los id
+  
+    let navBottom = document.getElementById("navBottom");
+    let navHeader = document.getElementById("navHeader");
+
+    
+  //obtenemos el fin de la iteración
+let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
+
+
+
+//agregamos el navegador de productos
+
+  contenedorNav.innerHTML+=`<div class="row" id="navHeader"> 
+  
+      <button onclick="navMenos(${numeroNavActual})">&lt</button> Mostrando ${inicioNav} al ${terminarDeIterar} de ${cantidadProductos} Productos Totales <button onclick="navMas(${numeroNavActual})">&gt</button>
+
+  </div>`
+
+  //realizamos la iteración
+  for (let index = inicioNav; index < terminarDeIterar; index++) {
+    
+    let json=Object.values(jsonActual)[index];
+
+    console.log("dentro de nav")
+    console.log(json)
+
+    
             // crear card
             const card = document.createElement("div");
             card.className = "card row";
             card.innerHTML = `
 
                 
-            <img style="width:100px; height:100px; overflow:visible;" src="https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoriasTextos[id]}/${json.id}/${json.img[0]}">
+            <img style="width:100px; height:100px; overflow:visible;" src="https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoriasTextos[categoriaActual]}/${json.id}/${json.img[0]}">
 
 
                 <h3>${json.producto}</h3>
 
-                <h3 style="color:red;">${json.precio}</h3>
+                <h3 style="color:red;">$ ${json.precio}</h3>
 
-                <button onclick="mostrarProducto('${json.id}','${categoriasTextos[id]}')">
+                <button onclick="mostrarProducto('${json.id}','${categoriasTextos[categoriaActual]}')">
                     Ver producto
                 </button>
             `;
 
-            contenedor.appendChild(card);
-        
-    });
+            contenedorNav.appendChild(card);
+
+  }
+
+  //agregamos el navegador de productos en el bottom
+
+  contenedorNav.innerHTML+=`
+  <div class="row" id="navHeader"> 
+    <button onclick="navMenos(${numeroNavActual})">&lt</button> Mostrando ${inicioNav} al ${terminarDeIterar} de ${cantidadProductos} Productos Totales <button onclick="navMas(${numeroNavActual})">&gt</button>
+  </div>`;
 }
+
+
+
 function mostrarProducto(name,categoria) {
 
     let thisJSON=jsonActual[name]

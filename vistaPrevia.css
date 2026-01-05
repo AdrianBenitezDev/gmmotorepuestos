@@ -38,14 +38,14 @@
 
 .descripcionVP{
     border-radius: 12px;
-    background-color: rgb(31, 30, 30);
+    background-color: rgb(216 216 216 / 65%);
     padding: 20px;
 
 }
 /* 
 div vista previa  */
 .divVP{
-    background-color: rgba(0, 0, 0, 0.596);
+    background-color: rgba(255, 255, 255);
     border-radius: 12px;
     display: flex;
     align-items: center;

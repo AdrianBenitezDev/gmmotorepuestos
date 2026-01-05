@@ -79,6 +79,7 @@ async function traerJSON(arrayTxt, id) {
     return coincidencias;
 
   } catch (e) {
+    console.log("error "+e)
     return {};
   }
 }
@@ -99,26 +100,29 @@ function cagarCardProductos(jsonObj){
     return;
   }
 
-  Object.entries(jsonObj).forEach(([key, json]) => {
+  
+  panelProductoNav(1)
 
-    const card = document.createElement("div");
-    card.className = "card row";
+  // Object.entries(jsonObj).forEach(([key, json]) => {
 
-    card.innerHTML = `
-      <img style="width:100px; height:100px;"
-        src="https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${json.categoria}/${json.id}/${json.img[0]}">
+  //   const card = document.createElement("div");
+  //   card.className = "card row";
 
-      <h3>${json.producto}</h3>
+  //   card.innerHTML = `
+  //     <img style="width:100px; height:100px;"
+  //       src="https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${json.categoria}/${json.id}/${json.img[0]}">
 
-      <h3 style="color:red;">$${json.precio}</h3>
+  //     <h3>${json.producto}</h3>
 
-      <button onclick="mostrarProducto('${json.id}','${json.categoria}')">
-        Ver producto
-      </button>
-    `;
+  //     <h3 style="color:red;">$${json.precio}</h3>
 
-    contenedor.appendChild(card);
-  });
+  //     <button onclick="mostrarProducto('${json.id}','${json.categoria}')">
+  //       Ver producto
+  //     </button>
+  //   `;
+
+  //   contenedor.appendChild(card);
+  // });
 }
 
 
@@ -126,6 +130,5 @@ document.getElementById("btnBorrar").addEventListener("click",()=>{
     document.getElementById("inputBusqueda").value="";
      document.getElementById("DivProductos").innerHTML="";
     document.getElementById("visorProducto").innerHTML="";
-    document.getElementById("vistaP").innerHTML="";
     
 })

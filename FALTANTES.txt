@@ -1,10 +1,24 @@
-❌ 1_ Cantidad de card de json 10 maximo (navegador)
+✅ 1_ Cantidad de card de json 10 maximo (navegador)
 ✅ 2- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt (PARA EDITAR/ELIMINAR)
 ✅ 2- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt
 ✅ 3 crear guardar EDICION
 ✅ 3 crear ELIMINAR
 ❌ 3_ Crear logica de compras
 ❌ 6_Cargar imagenes desde la pc
+❌ 7_CREAR EL BOTON CONSULTAR AL VENDEDOR
+❌ 8_Crear logica para que al hacer clik en la imagen se ponga PRINCIPAL
+❌ 9_Crear logica para que al hacer clik en la imagen PRINCIPAL se agrande en toda la pantalla
+❌ 10_cambiar estilo de comprar!
+
+IMPORTANTE
+❌ CREAR HTML PARA LOS SERVICIOS (sera estatico?, debo crear toda la logica para cargarlos?)
+❌ EL FRONTEND ACTUALMENTE ESTA CON RAW
+
+PRUEBAS
+
+❌crear 2 productos por categoria para probar
+❌crear 10 productos de una categoria para probar el navegador
+
 
 
 --PLUSS
