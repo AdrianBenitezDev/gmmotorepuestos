@@ -1,11 +1,19 @@
-❌1_ Cantidad de card de json 10 maximo (navegador)
-❌2- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt (PARA EDITAR/ELIMINAR)
+❌ 1_ Cantidad de card de json 10 maximo (navegador)
+✅ 2- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt (PARA EDITAR/ELIMINAR)
 ✅ 2- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt
-❌3_ Crear logica de compras
-❌4_creacion de boletas para el backen?
-❌5_importante registro de ventas o accesos para la pagina para monitoriar
-❌Cargar imagenes desde la pc
+✅ 3 crear guardar EDICION
+✅ 3 crear ELIMINAR
+❌ 3_ Crear logica de compras
+❌ 6_Cargar imagenes desde la pc
+
+
+--PLUSS
+
+❌ 4_creacion de BOLETAS para el backen?
+❌ 5_importante registro de ventas o accesos para la pagina para monitoriar
+
 
 se realizaran ventas online con archivos json en github?
 Por el momento solo ventas de catalogo por whatapp
 
+✅❌
