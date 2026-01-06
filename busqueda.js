@@ -103,26 +103,6 @@ function cagarCardProductos(jsonObj){
   
   panelProductoNav(1)
 
-  // Object.entries(jsonObj).forEach(([key, json]) => {
-
-  //   const card = document.createElement("div");
-  //   card.className = "card row";
-
-  //   card.innerHTML = `
-  //     <img style="width:100px; height:100px;"
-  //       src="https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${json.categoria}/${json.id}/${json.img[0]}">
-
-  //     <h3>${json.producto}</h3>
-
-  //     <h3 style="color:red;">$${json.precio}</h3>
-
-  //     <button onclick="mostrarProducto('${json.id}','${json.categoria}')">
-  //       Ver producto
-  //     </button>
-  //   `;
-
-  //   contenedor.appendChild(card);
-  // });
 }
 
 

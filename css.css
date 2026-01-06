@@ -189,3 +189,15 @@ button:hover, .button:hover  {
     font-size: 0.85rem;
     opacity: 0.7;
 }
+
+/* 
+------------------------------------------navegador-------------------------------------------------- */
+
+.navegador{
+    border-radius: 12px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(228, 225, 225, 0.596);
+}

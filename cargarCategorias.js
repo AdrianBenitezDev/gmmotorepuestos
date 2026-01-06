@@ -40,12 +40,14 @@ categoriasTextos.forEach((categoria,index)=>{
     return
   }
 
+  let categoriaMayus=categoria.charAt(0).toUpperCase()+categoria.slice(1);
+
             divCategoria.innerHTML+=`
             <div class="card">
                                             
                 <img src="./imagenes/img_${categoria}.png" alt="">
                             
-                <h3>${categoria}</h3>
+                <h3>${categoriaMayus}</h3>
 
                 <br>
                 

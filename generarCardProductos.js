@@ -11,7 +11,7 @@ async function cargarProductos(id) {
     
     //let apiURL = `https://api.github.com/repos/${owner}/${repo}/contents/categorias/${categoriasTextos[id]}`;
     //raw
-      const apiURL = `https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoriasTextos[id]}/datos.json`;
+      const apiURL = `https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoriasTextos[categoriaActual]}/datos.json`;
 
 
     const res = await fetch(apiURL);
@@ -32,11 +32,12 @@ async function cargarProductos(id) {
     // --------------------------------------------
     // ------------ cabecera de categoria----------
     // --------------------------------------------
+    let categoriaMayus=categoriasTextos[id].charAt(0).toUpperCase()+categoriasTextos[id].slice(1);
 
     document.getElementById("categoriaSeleccionada").innerHTML=`
     
     <button onclick="cargarCategorias()">Inicio</button>
-    <h3 style="margin-left:15px">Categoria: <span style="color:red;">${categoriasTextos[id]}</span></h3>
+    <h3 style="margin-left:15px">Categoria: <span style="color:red;"> ${categoriaMayus} </span></h3>
     
     `;            
     // --------------------------------------------
@@ -91,12 +92,6 @@ function panelProductoNav(numeroNavActual){
   console.log(inicioNav)//0
   console.log(finNav)//10
 
-  //obtenemos los nav con los id
-  
-    let navBottom = document.getElementById("navBottom");
-    let navHeader = document.getElementById("navHeader");
-
-    
   //obtenemos el fin de la iteración
 let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
 
@@ -104,16 +99,19 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
 
 //agregamos el navegador de productos
 
-  contenedorNav.innerHTML+=`<div class="row" id="navHeader"> 
+  contenedorNav.innerHTML+=`<div class="row navegador" id="navHeader"> 
   
       <button onclick="navMenos(${numeroNavActual})">&lt</button> Mostrando ${inicioNav} al ${terminarDeIterar} de ${cantidadProductos} Productos Totales <button onclick="navMas(${numeroNavActual})">&gt</button>
 
-  </div>`
+  </div>
+  <br>`
 
   //realizamos la iteración
   for (let index = inicioNav; index < terminarDeIterar; index++) {
     
     let json=Object.values(jsonActual)[index];
+
+
 
     console.log("dentro de nav")
     console.log(json)
@@ -125,14 +123,14 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
             card.innerHTML = `
 
                 
-            <img style="width:100px; height:100px; overflow:visible;" src="https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoriasTextos[categoriaActual]}/${json.id}/${json.img[0]}">
+            <img style="width:100px; height:100px; overflow:visible;" src="https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${json.categoria}/${json.id}/${json.img[0]}">
 
 
                 <h3>${json.producto}</h3>
 
                 <h3 style="color:red;">$ ${json.precio}</h3>
 
-                <button onclick="mostrarProducto('${json.id}','${categoriasTextos[categoriaActual]}')">
+                <button onclick="mostrarProducto(${index},'${json.id}','${json.categoria}')">
                     Ver producto
                 </button>
             `;
@@ -144,17 +142,20 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
   //agregamos el navegador de productos en el bottom
 
   contenedorNav.innerHTML+=`
-  <div class="row" id="navHeader"> 
+  
+  <br>
+  <div class="row navegador" id="navHeader"> 
     <button onclick="navMenos(${numeroNavActual})">&lt</button> Mostrando ${inicioNav} al ${terminarDeIterar} de ${cantidadProductos} Productos Totales <button onclick="navMas(${numeroNavActual})">&gt</button>
   </div>`;
 }
 
 
 
-function mostrarProducto(name,categoria) {
+function mostrarProducto(index,name,categoria) {
 
-    let thisJSON=jsonActual[name]
-    console.log(thisJSON)
+   let thisJSON=Object.values(jsonActual)[index]
+ 
+    console.log(thisJSON);
 
     let urlFija=`https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoria}/`
     
