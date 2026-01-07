@@ -1,14 +1,27 @@
 ✅ 1_ Cantidad de card de json 10 maximo (navegador)
 ✅ 2- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt (PARA EDITAR/ELIMINAR)
-✅ 2- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt
-✅ 3 crear guardar EDICION
-✅ 3 crear ELIMINAR
-❌ 3_ Crear logica de compras
-❌ 6_Cargar imagenes desde la pc
+✅ 3- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt
+✅ 4 crear guardar EDICION
+✅ 5 crear ELIMINAR
+✅ 6_ Crear logica de compras
+❌ 7_introducir Local storage!! para las compras, asi se reguerda
+❌ 8_crear un boton que copie la url de los productos para compartirlos por whatapp/instagram/facebook
 ❌ 7_CREAR EL BOTON CONSULTAR AL VENDEDOR
 ❌ 8_Crear logica para que al hacer clik en la imagen se ponga PRINCIPAL
 ❌ 9_Crear logica para que al hacer clik en la imagen PRINCIPAL se agrande en toda la pantalla
 ❌ 10_cambiar estilo de comprar!
+❌ 11_Cargar imagenes desde la pc
+❌ 12_Crear HTML para "Venta en el Local"
+
+aray producto function addproduct
+//0 categoria
+//1 id producto
+//2 nombre del producto
+//3 precio
+//4 canatidad del producto comprados
+
+cantidad producto precio
+
 
 IMPORTANTE
 ❌ CREAR HTML PARA LOS SERVICIOS (sera estatico?, debo crear toda la logica para cargarlos?)

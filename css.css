@@ -91,9 +91,10 @@ background: linear-gradient(270deg, #000000a1, #a0a0a0);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 22px rgba(0,0,0,0.35);
-}
+    border: 1px solid #d80000;
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.9);
+
+    }
 
 .card img {
     width: 100%;
@@ -200,4 +201,37 @@ button:hover, .button:hover  {
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: rgba(228, 225, 225, 0.596);
+}
+
+.divBtn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerMensaje{
+    top: 0px;
+    left: 0px;
+    padding: 10px;
+    position: fixed;
+}
+
+.mensaje{
+   display: flex;
+  padding: 15px 25px;
+  background: #111;
+  color: #fff;
+  border-radius: 8px;
+
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.mensaje.show {
+  opacity: 1;
+  transform: translateY(0);
 }

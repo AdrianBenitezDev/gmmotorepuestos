@@ -2,114 +2,39 @@
 
 let arrayPedido=[]
 
-async function traerCategorias() {
+//necesito que se ingrese:
 
+//0 categoria
+//1 id producto
+//2 nombre del producto
+//3 precio
+//4 canatidad del producto comprados
 
-  spiner(true);
+// arrayPedido[0]
+// arrayPedido[1]
+// arrayPedido[2]
+// arrayPedido[3]
+// arrayPedido[4]  Cantidad de la Compras 
 
-  const url = "";
+const mensaje = document.getElementById("mensaje");
 
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
+function mostrarMensaje() {
+  // Mostrar
+  mensaje.classList.add("show");
 
-    //console.log("Categorías:", data);
-    let divCategoria=document.getElementById("categorias");
-    data.forEach(categoria => {
-        divCategoria.innerHTML+=`<button class="btn btn-primary" onclick='traerPrecios("${categoria}")'>${categoria}</button>`;
-    });
-      spiner(false);
-    return data; // es un array con los nombres de las hojas
-
-    
-  } catch (error) {
-    console.error("Error obteniendo categorías:", error);
-      spiner(false);
-       let divCategoria=document.getElementById("categorias");
-      divCategoria.innerHTML=`<p>Revise su conexión a Internet!</p>`;
-    return ["MILANESAS"];
-  }
+  // Esperar 3 segundos
+  setTimeout(() => {
+    mensaje.classList.remove("show");
+  }, 3000);
 }
 
-async function traerPrecios(cat) {
 
-document.getElementById("titleCategoria").scrollIntoView({
-    behavior: "smooth"
-  });
-
-   let catSinEspacio=cat.replaceAll('20%',' ');
-    document.getElementById("titleCategoria").textContent=catSinEspacio;
-
-
-       divPrecios.innerHTML='';
-         spiner(true);
-
-
-   // let catFormateada=cat.replaceAll(' ','22%')
-  const url = `https://script.google.com/macros/s/AKfycbxT5zeNWK5O_z3Na_XVU_Rz6d8yw_uI2AZS94gp9XXrtBEzR4hMvlzqRUGuhezyytxa/exec?acc=tp&&cat=${cat}`;
-
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-
-    console.log("Categorías:", data);
-
-    let divPrecios=document.getElementById('divPrecios');
-
-     
-
-    data.forEach(producto=>{
-        
-       divPrecios.innerHTML+=`
-          <div class="card">
-
-          <div class="card-row">
-
-          <div class="card-column">         
-          
-                <div class="card-header">
-                  <h3 class="product-name">${producto[1]}</h3>
-                   <span class="dots"></span>
-                  <span class="product-price">$${producto[2]}</span>
-                </div>
-                <p class="product-desc">
-                  ${producto[3]}
-                </p>
-                
-          
-          </div>
-            <button class="btn-agregar" >Agregar</button>
-            </div>
-   
-  </div>
-        `;
-    })
-
-    const botones = document.querySelectorAll(".btn-agregar");
-
-botones.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
-    addProduct(data[index]); // acá el array sigue intacto
-  });
-});
-
-
-   
-    spiner(false);
-    
-    return data; // es un array con los nombres de las hojas
-  } catch (error) {
-    
-    let divPrecios=document.getElementById('divPrecios');
-    spiner(false);
-    divPrecios.innerHTML=`<p>Revise su conexión a Internet!</p>`
-    console.error("Error obteniendo categorías:", error);
-    return []
-  }
-}
-
-//
+//Agregar al carrito
 function addProduct(pro) {
+
+  
+mostrarMensaje();
+
 
   let existe = arrayPedido.find(ele => ele[0] == pro[0]);
 
@@ -126,24 +51,8 @@ function addProduct(pro) {
 }
 
 
-
-//let isLoading = false;
-
-function spiner(boleano) {
-
-    document.getElementById("spinner").style.display =
-        boleano ? "block" : "none";
-}
-
-
-function irHader(){
-  document.getElementById("irHader").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
-function irTop(){
-  document.getElementById("bandera").scrollIntoView({
+function irDivBuscar(){
+  document.getElementById("DivSeach").scrollIntoView({
     behavior: "smooth"
   });
 }
@@ -160,13 +69,15 @@ if(arrayPedido.length>0){
   row+=`
           <tr>
             <td><button onclick="menos(${index})" >-</button> ${pedido[4]} <button onclick="mas(${index})">+</button></td>
-            <td class="product-name">${pedido[1]}</td>
-            <td class="product-price">$${pedido[2]}</td>
+           
+            <td class=""><img class="imgPanelPedidos" src="https://raw.githubusercontent.com/AdrianBenitezDev/gmmotorepuestosBackend/main/categorias/${pedido[0]}/${pedido[1]}/imagen_0_${pedido[1].replace("producto_","")}.jpg"></td> 
+             <td class="product-name">${pedido[2]}</td>
+            <td class="product-price">$${pedido[3]}</td>
             <td class=""><button onclick="dele(${index})">Borrar</button></td>
           </tr>
   `;
 
-  total += Number(pedido[2]) * Number(pedido[4]);
+  total += Number(pedido[3]) * Number(pedido[4]);
 
 
   })
@@ -188,7 +99,7 @@ function cerrarPanelPedidos(){
 
 function menos(id){
 
-if(arrayPedido.length>1&&arrayPedido[id][4]){
+if(arrayPedido.length>0 && arrayPedido[id][4]>1){
 arrayPedido[id][4]=Number(arrayPedido[id][4])-1;
 
 verPedidos();
@@ -214,6 +125,7 @@ verPedidos();
   arrayPedido.splice(id, 1);
   document.getElementById("rowTabla").innerHTML="<td></td><td><p>La lista de Pedidos esta Vacia</p></td><td></td><td></td><td></td>"
    document.getElementById("contadorCarrito").textContent = "0";
+   document.getElementById("Total").innerHTML="$ 0";
 
 }
 }

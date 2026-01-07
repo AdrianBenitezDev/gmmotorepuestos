@@ -114,6 +114,30 @@
 
     </section>
 
+    <div class="panelBlack" id="panelBlack">
+                
+            <div class="panelPedido" id="panelPedidos"  style="margin-top: 120px;">
+                <div class="title"><h2>Revisar mi Pedido</h2></div>
+                <div class="cuerpoPedido" >
+                    <table class="view" id="cuerpoPedido">
+                        <thead><tr><td>Cantidad</td><td>Imagen</td><td>Producto</td><td>Precio</td><td>Acción</td></tr></thead>
+                        <tbody id="rowTabla"></tbody>
+                        <tr><td></td><td></td><td></td><td></td></tr>
+                        <tr class="total"><td>Total</td><td></td><td></td><td><h3 id="Total"></h3></td></tr>
+                    </table>
+                </div>
+                <div class="row"><button>Finalizar mi Pedido</button> <button onclick="cerrarPanelPedidos()">Continuar Comprando</button></div>
+            </div>
+
+</div>
+
+<div class="containerMensaje">
+    <div class="mensaje" id="mensaje">
+        <p>Producto Agregado</p>
+    </div>
+
+</div>
+
 </body>
 <footer class="footer">
     <div class="footer-container">
@@ -137,8 +161,6 @@
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
-
-
         </div>
 
         <!-- CONTACTO -->

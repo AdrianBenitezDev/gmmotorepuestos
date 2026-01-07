@@ -130,9 +130,19 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
 
                 <h3 style="color:red;">$ ${json.precio}</h3>
 
-                <button onclick="mostrarProducto(${index},'${json.id}','${json.categoria}')">
-                    Ver producto
-                </button>
+                <div class="divBtn">
+                      <button onclick="Comprar(${index},'${json.id}','${json.categoria}')">
+                          Comprar
+                      </button>
+
+                      <button onclick="addProduct(['${json.categoria}','${json.id}','${json.producto}','${json.precio}'])">
+                          Agregar al Carrito
+                      </button>
+
+                      <button onclick="mostrarProducto(${index},'${json.id}','${json.categoria}')">
+                          Ver producto
+                      </button>
+                </div>
             `;
 
             contenedorNav.appendChild(card);
@@ -192,6 +202,12 @@ function mostrarProducto(index,name,categoria) {
                </div>
                
                <button class="buy" id="buy">Comprar</button>
+
+                <button onclick="addProduct(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}'])">
+                          Agregar al Carrito
+                      </button>
+
+               <button class="buy" id="consultarVendedor">Consultar al Vendedor</button>
 
             </div>
 
