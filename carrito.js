@@ -1,6 +1,15 @@
 //window.onload = traerCategorias();
+let datos=JSON.parse(localStorage.getItem('datos'));
+let user=datos?.usuario||"user_"+Math.random(4);
+let arrayPedido=datos?.carrito||[];
 
-let arrayPedido=[]
+if(arrayPedido.length>0){
+  
+  document.getElementById("contadorCarrito").textContent = arrayPedido.length;
+  mostrarMensaje("⚠️ Hay Productos en el Carrito!")
+
+}
+
 
 //necesito que se ingrese:
 
@@ -16,24 +25,42 @@ let arrayPedido=[]
 // arrayPedido[3]
 // arrayPedido[4]  Cantidad de la Compras 
 
-const mensaje = document.getElementById("mensaje");
 
-function mostrarMensaje() {
-  // Mostrar
-  mensaje.classList.add("show");
+function mostrarMensaje(mensaje) {
+  const containerMensaje = document.getElementById("mensaje");
 
-  // Esperar 3 segundos
+  let divMensaje = document.createElement('div');
+  divMensaje.classList.add('mensaje');
+
+  let texto = document.createElement("p");
+  texto.textContent = mensaje;
+
+  divMensaje.appendChild(texto);
+  containerMensaje.appendChild(divMensaje);
+
+  // FORZAR un frame para que la transición funcione
+  requestAnimationFrame(() => {
+    divMensaje.classList.add("show");
+  });
+
+  // Visible 3 segundos
   setTimeout(() => {
-    mensaje.classList.remove("show");
+    divMensaje.classList.remove("show");
+
+    // Esperar que termine la animación antes de eliminar
+    setTimeout(() => {
+      containerMensaje.removeChild(divMensaje);
+    }, 500); // mismo tiempo que la transición
   }, 3000);
 }
+
 
 
 //Agregar al carrito
 function addProduct(pro) {
 
   
-mostrarMensaje();
+mostrarMensaje("✅ Producto Agregado!");
 
 
   let existe = arrayPedido.find(ele => ele[0] == pro[0]);
@@ -48,6 +75,13 @@ mostrarMensaje();
   }
 
   document.getElementById("contadorCarrito").textContent = arrayPedido.length;
+
+  //guardamos en local storage
+let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
+
+  localStorage.setItem('datos',JSON.stringify(datosGuardarLocalStorage))
+  console.log("datos guardados en ls: ")
+  console.log(datosGuardarLocalStorage)
 }
 
 
@@ -120,12 +154,110 @@ function dele(id){
 if(arrayPedido[id][4]&&arrayPedido.length>1){
  arrayPedido.splice(id, 1);
   document.getElementById("contadorCarrito").textContent = arrayPedido.length;
+
+  
+  //guardamos en local storage
+let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
+
+  localStorage.setItem('datos',JSON.stringify(datosGuardarLocalStorage))
+  console.log("datos guardados en ls: ")
+  console.log(datosGuardarLocalStorage)
+
 verPedidos();
+
 }else{
   arrayPedido.splice(id, 1);
   document.getElementById("rowTabla").innerHTML="<td></td><td><p>La lista de Pedidos esta Vacia</p></td><td></td><td></td><td></td>"
    document.getElementById("contadorCarrito").textContent = "0";
    document.getElementById("Total").innerHTML="$ 0";
 
+   
+  //guardamos en local storage
+let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
+
+  localStorage.setItem('datos',JSON.stringify(datosGuardarLocalStorage))
+  console.log("datos guardados en ls: ")
+  console.log(datosGuardarLocalStorage)
+
 }
+}
+
+
+async function comprarProducto(id,categoria,cantidad){
+
+    spinTrue()
+    mostrarMensaje("Preparando la compra");
+
+  console.log("comprando..");
+  let array={
+      envio:false,
+      carrito:false,
+      cantidad:cantidad,
+      arrayCarrito:[],
+      cantidad:cantidadActual,
+      producto:{id:id,categoria:categoria},
+      metodo_pago: "local", //puede ser online
+  }
+
+  let resp =await fetch("https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/crearVentaPendiente", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(array)
+})
+
+  console.log(array)
+
+  if(resp.code==200){
+mostrarMensaje("✅ Compra Realizada");
+}else{
+mostrarMensaje("❌ Error al realizar la compra");
+}
+
+
+  let res=await resp.json();
+  console.log(res)
+  spinFalse()
+}
+
+
+
+
+async function comprarCarrito(){
+
+  spinTrue()
+
+  let datos={
+      
+      envio:false,
+      carrito:true,
+      arrayCarrito:arrayPedido,
+      producto:{},
+      metodo_pago: "local",//puede ser online
+      
+  }
+  
+  console.log(datos)
+
+  //obtenemos el array de productos y lo enviamos al backend
+
+  let resp =await fetch("https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/crearVentaPendiente", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(datos)
+})
+
+if(resp.code==200){
+mostrarMensaje("✅ Compra Realizada");
+}else{
+mostrarMensaje("❌ Error al realizar la compra");
+}
+
+  let res=await resp.json();
+  console.log(res)
+
+  spinFalse()
+  cerrarPanelPedidos()
+    
+
+
 }

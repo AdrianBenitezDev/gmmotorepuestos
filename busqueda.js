@@ -2,6 +2,9 @@ let divBusqueda = document.getElementById("btnBuscar");
 
 let h3Texto=document.getElementById("h3Resultados");
 
+//al iniciar le damos focus a la barra de busqueda
+document.getElementById("inputBusqueda").focus();
+
 
 divBusqueda.addEventListener('click', async () => {
 
@@ -108,6 +111,7 @@ function cagarCardProductos(jsonObj){
 
 document.getElementById("btnBorrar").addEventListener("click",()=>{
     document.getElementById("inputBusqueda").value="";
+     document.getElementById("inputBusqueda").focus();
      document.getElementById("DivProductos").innerHTML="";
     document.getElementById("visorProducto").innerHTML="";
     

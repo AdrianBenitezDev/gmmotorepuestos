@@ -1,15 +1,45 @@
+2.62GB 15:14
+
 ✅ 1_ Cantidad de card de json 10 maximo (navegador)
 ✅ 2- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt (PARA EDITAR/ELIMINAR)
 ✅ 3- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt
 ✅ 4 crear guardar EDICION
 ✅ 5 crear ELIMINAR
 ✅ 6_ Crear logica de compras
-❌ 7_introducir Local storage!! para las compras, asi se reguerda
-❌ 8_crear un boton que copie la url de los productos para compartirlos por whatapp/instagram/facebook
+✅ 7_introducir Local storage!! para las compras, asi se reguerda
+✅ 8_crear un boton que copie la url de los productos para compartirlos por whatapp/instagram/facebook
+❌ 9_agregar al json stock (un numero), en el frontend se renderiza 
+una etiqueta que dice sin stock cuando es igal a cero
+
+⚠️⚠️⚠️-LOGICA DE COMPRAS con el backend
+(ademas de whatapp como medio de compra, quiero que se envie todo el array
+del carrito a un objeto de fireBase para que prepare la compra)
+
+(llevamos registro de todas las ventas realizadas por la web)
+(firebase notifica a la web-admin )
+
+un json en github?
+
+conectado a la web BACKEND GIT HUB
+--notificación por whatapp o por gmail de la venta 
+
+⚠️⚠️⚠️ FIRESTORE
+    //debemos realizar un fetch para asegurarnos el precio de los productos
+    //y el percio total de los productos
+
 ❌ 7_CREAR EL BOTON CONSULTAR AL VENDEDOR
-❌ 8_Crear logica para que al hacer clik en la imagen se ponga PRINCIPAL
-❌ 9_Crear logica para que al hacer clik en la imagen PRINCIPAL se agrande en toda la pantalla
+
+IMAGEN
+❌ 8_Crear logica para que al hacer clik en la imagen
+ se ponga PRINCIPAL
+❌ 9_al hacer click en VP vuelva a la imgagen_0_
+❌ 9_Crear logica para que al hacer clik en la imagen
+ PRINCIPAL se agrande en toda la pantalla
 ❌ 10_cambiar estilo de comprar!
+
+
+
+-PLUS
 ❌ 11_Cargar imagenes desde la pc
 ❌ 12_Crear HTML para "Venta en el Local"
 
@@ -36,7 +66,7 @@ PRUEBAS
 
 --PLUSS
 
-❌ 4_creacion de BOLETAS para el backen?
+❌ 4_creacion de BOLETAS para el backend?
 ❌ 5_importante registro de ventas o accesos para la pagina para monitoriar
 
 
@@ -44,3 +74,13 @@ se realizaran ventas online con archivos json en github?
 Por el momento solo ventas de catalogo por whatapp
 
 ✅❌
+
+Cliente paga
+   ↓
+Mercado Pago (webhook)
+   ↓
+Firebase Cloud Function
+   ↓
+Firestore (guardar venta)
+   ↓
+Email / WhatsApp

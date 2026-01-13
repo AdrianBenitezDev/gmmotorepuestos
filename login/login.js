@@ -25,10 +25,3 @@ spinTrue()
 }
 
 
-// ====== SPINNER ======
-function spinFalse() {
-  document.getElementById('overlay').style.display = "none";
-}
-function spinTrue() {
-  document.getElementById('overlay').style.display = "flex";
-}

@@ -2,6 +2,7 @@ const owner = "AdrianBenitezDev";
 const repo = "gmmotorepuestosBackend";
 let jsonActual={};
 let categoriaActual=1;
+let cantidadActual=1;
 
 
 //traemos los productos del json y lo guardamos en una varuable "JSONACTUAL"
@@ -131,7 +132,7 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
                 <h3 style="color:red;">$ ${json.precio}</h3>
 
                 <div class="divBtn">
-                      <button onclick="Comprar(${index},'${json.id}','${json.categoria}')">
+                      <button onclick="comprarProducto('${json.id}','${json.categoria}')">
                           Comprar
                       </button>
 
@@ -162,6 +163,7 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
 
 
 function mostrarProducto(index,name,categoria) {
+
 
    let thisJSON=Object.values(jsonActual)[index]
  
@@ -200,14 +202,24 @@ function mostrarProducto(index,name,categoria) {
                <div class="descripcionVP">
               <p id="descripcionVP">${thisJSON.descripcion}</p>
                </div>
+
+               <div class="row">
+
+                  <button onClick="menosCantidad()"> - </button>
+                    <p id="inputCantidad">1</p>
+                  <button  onClick="masCantidad()"> + </button>
+
+               </div>
                
-               <button class="buy" id="buy">Comprar</button>
+               <button class="buy" id="buy" onclick="comprarProducto('${thisJSON.id}','${thisJSON.categoria}')">Comprar</button>
 
                 <button onclick="addProduct(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}'])">
                           Agregar al Carrito
                       </button>
 
                <button class="buy" id="consultarVendedor">Consultar al Vendedor</button>
+
+               <button onclick="compartir('${thisJSON.categoria}','${thisJSON.id}')">Compartir</button>
 
             </div>
 
@@ -220,9 +232,28 @@ function mostrarProducto(index,name,categoria) {
             
             `;
 
+            document.getElementById("menosCantidad")
+
             document.getElementById("visorProducto")
                 .scrollIntoView({ behavior: "smooth", block: "start" });
     
+}
+
+function menosCantidad(){
+  if(cantidadActual<=1){
+
+  }else{
+
+        cantidadActual--
+    let texto = String(cantidadActual);
+      document.getElementById("inputCantidad").textContent=texto;
+  }
+}
+
+function masCantidad(){
+  cantidadActual++
+    let texto = String(cantidadActual);
+document.getElementById("inputCantidad").textContent=texto;
 }
 
 // cargarProductos();
