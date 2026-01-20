@@ -120,8 +120,10 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
     
             // crear card
             const card = document.createElement("div");
-            card.className = "card row";
+            card.className = "cardProductoBusqueda";
             card.innerHTML = `
+
+            ${json.stock==0?'<span class="labelStockBusqueda" >Sin Stock</span>':''}
 
                 
             <img style="width:100px; height:100px; overflow:visible;" src="https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${json.categoria}/${json.id}/${json.img[0]}">
@@ -132,15 +134,15 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
                 <h3 style="color:red;">$ ${json.precio}</h3>
 
                 <div class="divBtn">
-                      <button onclick="comprarProducto('${json.id}','${json.categoria}')">
+                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="comprarProducto('${json.id}','${json.categoria}')">
                           Comprar
                       </button>
 
-                      <button onclick="addProduct(['${json.categoria}','${json.id}','${json.producto}','${json.precio}'])">
+                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${json.categoria}','${json.id}','${json.producto}','${json.precio}'])">
                           Agregar al Carrito
                       </button>
 
-                      <button onclick="mostrarProducto(${index},'${json.id}','${json.categoria}')">
+                      <button  onclick="mostrarProducto(${index},'${json.id}','${json.categoria}')">
                           Ver producto
                       </button>
                 </div>
@@ -172,25 +174,38 @@ function mostrarProducto(index,name,categoria) {
     let urlFija=`https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoria}/`
     
 
+    let labelStock=""
+   
+
+    if(thisJSON.stock==0){
+        
+      labelStock=`
+      <span class="labelStock">Producto Sin Stock</span> 
+      `
+    }
+
 
             document.getElementById("visorProducto").innerHTML = `
             
                  <div class="divVP" id="vistaP">
+
+                 ${labelStock}
+
 <!-- fila principal -->
           <div class="row">
 
             <!-- columna de 4 imagenes -->
             <div class="column">
-              <img id="img404_4" class="img404" src="${thisJSON.img[1]?urlFija+name+'/'+thisJSON.img[1]:'./Image404.png'}" alt="./Image404.png">
-              <img id="img404_4" class="img404" src="${thisJSON.img[2]?urlFija+name+'/'+thisJSON.img[2]:'./Image404.png'}" alt="./Image404.png">
-              <img id="img404_4" class="img404" src="${thisJSON.img[3]?urlFija+name+'/'+thisJSON.img[3]:'./Image404.png'}" alt="./Image404.png">
-              <img id="img404_4" class="img404" src="${thisJSON.img[4]?urlFija+name+'/'+thisJSON.img[4]:'./Image404.png'}" alt="./Image404.png">
+              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[1]?urlFija+name+'/'+thisJSON.img[1]:'./Image404.png'}" alt="./Image404.png">
+              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[2]?urlFija+name+'/'+thisJSON.img[2]:'./Image404.png'}" alt="./Image404.png">
+              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[3]?urlFija+name+'/'+thisJSON.img[3]:'./Image404.png'}" alt="./Image404.png">
+              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[4]?urlFija+name+'/'+thisJSON.img[4]:'./Image404.png'}" alt="./Image404.png">
             </div>
 
             <!-- imagen seleccionada y titulo -->
             <div class="column">
 
-               <img id="img404_0" class="img404 img404Big" src="${urlFija+name+'/'+'imagen_0_'+name.replace('producto_','')}.jpg" alt="./Image404.png">
+               <img class="img404 img404Big ${thisJSON.stock==0?'imgDisabled':''}" id="img404_0"  src="${urlFija+name+'/'+'imagen_0_'+name.replace('producto_','')}.jpg" alt="./Image404.png">
               
             </div>
 
@@ -203,17 +218,19 @@ function mostrarProducto(index,name,categoria) {
               <p id="descripcionVP">${thisJSON.descripcion}</p>
                </div>
 
+               <p>Stock: ${thisJSON.stock}</p>
+
                <div class="row">
 
-                  <button onClick="menosCantidad()"> - </button>
+                  <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} onClick="menosCantidad()"> - </button>
                     <p id="inputCantidad">1</p>
-                  <button  onClick="masCantidad()"> + </button>
+                  <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''}  onClick="masCantidad()"> + </button>
 
                </div>
                
-               <button class="buy" id="buy" onclick="comprarProducto('${thisJSON.id}','${thisJSON.categoria}')">Comprar</button>
+               <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} class="buy" id="buy" onclick="comprarProducto('${thisJSON.id}','${thisJSON.categoria}')">Comprar</button>
 
-                <button onclick="addProduct(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}'])">
+                <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}'])">
                           Agregar al Carrito
                       </button>
 

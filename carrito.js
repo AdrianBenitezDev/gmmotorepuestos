@@ -205,17 +205,18 @@ async function comprarProducto(id,categoria,cantidad){
   body: JSON.stringify(array)
 })
 
-  console.log(array)
 
-  if(resp.code==200){
+  let res=await resp.json();
+  console.log(res)
+
+  if(res.ok==true){
 mostrarMensaje("✅ Compra Realizada");
 }else{
 mostrarMensaje("❌ Error al realizar la compra");
 }
 
 
-  let res=await resp.json();
-  console.log(res)
+
   spinFalse()
 }
 
@@ -236,6 +237,7 @@ async function comprarCarrito(){
       
   }
   
+  console.log("datos enviados carrito:")
   console.log(datos)
 
   //obtenemos el array de productos y lo enviamos al backend
@@ -245,15 +247,16 @@ async function comprarCarrito(){
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(datos)
 })
+ let res=await resp.json();
+  console.log(res)
 
-if(resp.code==200){
+if(res.ok==true){
 mostrarMensaje("✅ Compra Realizada");
 }else{
 mostrarMensaje("❌ Error al realizar la compra");
 }
 
-  let res=await resp.json();
-  console.log(res)
+ 
 
   spinFalse()
   cerrarPanelPedidos()

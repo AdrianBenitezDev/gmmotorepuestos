@@ -8,7 +8,7 @@
 ✅ 6_ Crear logica de compras
 ✅ 7_introducir Local storage!! para las compras, asi se reguerda
 ✅ 8_crear un boton que copie la url de los productos para compartirlos por whatapp/instagram/facebook
-❌ 9_agregar al json stock (un numero), en el frontend se renderiza 
+✅ 9_agregar al json stock (un numero), en el frontend se renderiza 
 una etiqueta que dice sin stock cuando es igal a cero
 
 ⚠️⚠️⚠️-LOGICA DE COMPRAS con el backend
@@ -27,7 +27,8 @@ conectado a la web BACKEND GIT HUB
     //debemos realizar un fetch para asegurarnos el precio de los productos
     //y el percio total de los productos
 
-❌ 7_CREAR EL BOTON CONSULTAR AL VENDEDOR
+✅ 7_CREAR EL BOTON CONSULTAR AL VENDEDOR
+❌FALTA HACER LA LOGICA
 
 IMAGEN
 ❌ 8_Crear logica para que al hacer clik en la imagen
@@ -40,8 +41,8 @@ IMAGEN
 
 
 -PLUS
-❌ 11_Cargar imagenes desde la pc
-❌ 12_Crear HTML para "Venta en el Local"
+❌ 11_Cargar imagenes desde la pc (FALTA HACER LA LOGICA)
+✅ 12_Crear HTML para "Venta en el Local"
 
 aray producto function addproduct
 //0 categoria
