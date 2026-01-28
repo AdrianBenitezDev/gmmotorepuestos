@@ -79,6 +79,32 @@ background: linear-gradient(270deg, #000000a1, #a0a0a0);
 }
 
 /* CARD */
+.cardColumn {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    color: #222;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    text-align: center;
+    transition: 0.3s;
+    width: auto;
+    margin: 10px;
+}
+.cardRow {
+    display: flex;
+    flex-direction: row;
+    background: white;
+    color: #222;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    text-align: center;
+    transition: 0.3s;
+    width: auto;
+    margin: 10px;
+}
 .card {
     background: white;
     color: #222;

@@ -111,7 +111,7 @@ if(arrayPedido.length>0){
           </tr>
   `;
 
-  total += Number(pedido[3]) * Number(pedido[4]);
+  total += parseNumeroAR(pedido[3]) * parseNumeroAR(pedido[4]);
 
 
   })
@@ -134,7 +134,7 @@ function cerrarPanelPedidos(){
 function menos(id){
 
 if(arrayPedido.length>0 && arrayPedido[id][4]>1){
-arrayPedido[id][4]=Number(arrayPedido[id][4])-1;
+arrayPedido[id][4]=parseNumeroAR(arrayPedido[id][4])-1;
 
 verPedidos();
 }
@@ -143,7 +143,8 @@ verPedidos();
 function mas(id){
  
  
-arrayPedido[id][4]=Number(arrayPedido[id][4])+1;
+arrayPedido[id][4]=parseNumeroAR(arrayPedido[id][4])+1;
+
 
 verPedidos();
  
@@ -182,45 +183,28 @@ let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
 }
 }
 
+//comprar producto individual:
+//agrega el producto al carrito
+//y renderiza el carrito para que el usuario coloque la cantidad y aprete en finalizar compra
 
-async function comprarProducto(id,categoria,cantidad){
-
-    spinTrue()
-    mostrarMensaje("Preparando la compra");
-
-  console.log("comprando..");
-  let array={
-      envio:false,
-      carrito:false,
-      cantidad:cantidad,
-      arrayCarrito:[],
-      cantidad:cantidadActual,
-      producto:{id:id,categoria:categoria},
-      metodo_pago: "local", //puede ser online
-  }
-
-  let resp =await fetch("https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/crearVentaPendiente", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(array)
-})
-
-
-  let res=await resp.json();
-  console.log(res)
-
-  if(res.ok==true){
-mostrarMensaje("✅ Compra Realizada");
-}else{
-mostrarMensaje("❌ Error al realizar la compra");
+function comprarProductoIndividual(pro) {
+  addProduct(pro);
+  verPedidos();
 }
 
 
+//fncion asociada al btn del carrito de compras
+// esta disponible en el carrito para 1 como para mas de 1 producto
+async function finalizarPedido(id, categoria, cant, buy) {
 
-  spinFalse()
+  let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
+
+  localStorage.setItem('datos',JSON.stringify(datosGuardarLocalStorage))
+//abrimos la web para pagar
+  // redirección dentro del mismo sitio
+  window.location.href = `/revcompra.html`;
+
 }
-
-
 
 
 async function comprarCarrito(){
@@ -263,4 +247,55 @@ mostrarMensaje("❌ Error al realizar la compra");
     
 
 
+}
+
+
+//---------------------------------- deprecado --------------------------------------------------------
+async function comprarProductoRevisar(id,categoria,cantidad){
+
+    spinTrue()
+    mostrarMensaje("Preparando la compra");
+
+  console.log("comprando..");
+  let array={
+      envio:false,
+      carrito:false,
+      cantidad:cantidad,
+      arrayCarrito:[],
+      cantidad:cantidadActual,
+      producto:{id:id,categoria:categoria},
+      metodo_pago: "local", //puede ser online
+  }
+
+  let resp =await fetch("https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/crearVentaPendiente", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(array)
+})
+
+
+  let res=await resp.json();
+  console.log(res)
+
+  if(res.ok==true){
+mostrarMensaje("✅ Compra Realizada");
+}else{
+mostrarMensaje("❌ Error al realizar la compra");
+}
+
+
+
+  spinFalse()
+}
+
+
+
+function parseNumeroAR(valor) {
+  if (typeof valor === "number") return valor;
+
+  return Number(
+    valor
+      .replace(/\./g, "") // quita separador de miles
+      .replace(",", ".")  // convierte decimal a formato JS
+  );
 }

@@ -134,7 +134,7 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
                 <h3 style="color:red;">$ ${json.precio}</h3>
 
                 <div class="divBtn">
-                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="comprarProducto('${json.id}','${json.categoria}')">
+                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="comprarProductoIndividual(['${json.categoria}','${json.id}','${json.producto}','${json.precio}'])">
                           Comprar
                       </button>
 
@@ -228,7 +228,7 @@ function mostrarProducto(index,name,categoria) {
 
                </div>
                
-               <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} class="buy" id="buy" onclick="comprarProducto('${thisJSON.id}','${thisJSON.categoria}')">Comprar</button>
+               <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} class="buy" id="buy" onclick="comprarProductoIndividual(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}'])">Comprar</button>
 
                 <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}'])">
                           Agregar al Carrito

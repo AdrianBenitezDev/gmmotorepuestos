@@ -1,0 +1,170 @@
+.card-comprador {
+  width: auto;
+  margin: 10px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.card-comprador .campo {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nombre ocupa toda la fila */
+.card-comprador .campo:nth-child(1) {
+  grid-column: span 2;
+}
+
+/* DNI y celular quedan en 2 columnas */
+.card-comprador label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.card-comprador input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.card-comprador input:focus {
+  outline: none;
+  border-color: #009ee3;
+  box-shadow: 0 0 0 2px rgba(0,158,227,0.2);
+}
+
+.cardPay{
+    width: auto;
+    margin: 10px;
+}
+
+.trHeader td{
+    background-color: rgb(227, 222, 222);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* CONTENEDOR GENERAL */
+#resultadoPago {
+  margin-top: 20px;
+}
+
+/* CARD BASE */
+.resultado-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  animation: fadeIn 0.4s ease;
+  width: auto;
+    margin: 10px;
+
+}
+
+/* TITULO */
+.resultado-card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+/* ESTADOS */
+.resultado-card.aprobado {
+  border-left: 6px solid #2ecc71;
+}
+
+.resultado-card.pendiente {
+  border-left: 6px solid #f1c40f;
+}
+
+/* TEXTOS */
+.resultado-card p {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.resultado-card .estado b {
+  text-transform: uppercase;
+}
+
+.resultado-card .id {
+  font-size: 13px;
+  color: #777;
+}
+
+/* BOTÓN CUPÓN */
+.btn-cupon {
+  display: inline-block;
+  margin: 14px 0;
+  padding: 12px 22px;
+  background: #3483fa; /* Mercado Pago */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-cupon:hover {
+  background: #2968c8;
+  transform: translateY(-1px);
+}
+
+/* INFO EXTRA */
+.info-extra {
+  margin-top: 10px;
+}
+
+.info-extra p {
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #555;
+}
+
+.info-extra code {
+  display: block;
+  background: #f4f4f4;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* FECHA VENCIMIENTO */
+.vence {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ANIMACIÓN */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
