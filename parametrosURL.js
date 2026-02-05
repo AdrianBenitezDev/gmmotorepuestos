@@ -14,7 +14,7 @@ let urlId=parametrosUrl.get("id");
 
 if(urlCategoria&&urlId){
 
-     jsonActual=await traerProductoUrl(urlCategoria,urlId)
+     jsonActual=await traerProductoUrl(urlId)
 
      if(jsonActual.length>0){
         //ocultamos los demas div
@@ -30,9 +30,9 @@ if(urlCategoria&&urlId){
 
 // 3. Completar la Vista Previa (VP) con la información recibida
 
-async function traerProductoUrl(categoria,id) {
+async function traerProductoUrl(id) {
     //obtenemos el json con los datos del producto
-    const url=`https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoria}/datos.json`;
+    const url=`https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/getProductosByKeyword?id=${id}`;
     console.log(url)
     const resp=await fetch(url)
     
@@ -48,13 +48,13 @@ async function traerProductoUrl(categoria,id) {
 //logia para compartir url
 //?categoria=mantenimiento&id=producto_647_40_18_412026
 
-async function compartir(categoria,id){
+async function compartir(id){
    
     let url =  new URL(window.location.href);
     if(url.searchParams.get("categoria")){
 
     }else{
-       url+=`?categoria=${categoria}&id=${id}`;
+       url+=`?id=${id}`;
 
     }
   if (navigator.share) {

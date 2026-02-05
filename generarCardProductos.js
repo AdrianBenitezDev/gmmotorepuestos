@@ -12,7 +12,7 @@ async function cargarProductos(id) {
     
     //let apiURL = `https://api.github.com/repos/${owner}/${repo}/contents/categorias/${categoriasTextos[id]}`;
     //raw
-      const apiURL = `https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoriasTextos[categoriaActual]}/datos.json`;
+      const apiURL = `https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/getProductosByCategoria?categoria=${encodeURIComponent(categoriasTextos[categoriaActual])}`;
 
 
     const res = await fetch(apiURL);
@@ -110,7 +110,8 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
   //realizamos la iteración
   for (let index = inicioNav; index < terminarDeIterar; index++) {
     
-    let json=Object.values(jsonActual)[index];
+    console.log(jsonActual)
+    let json=jsonActual[index];
 
 
 
@@ -126,7 +127,7 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
             ${json.stock==0?'<span class="labelStockBusqueda" >Sin Stock</span>':''}
 
                 
-            <img style="width:100px; height:100px; overflow:visible;" src="https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${json.categoria}/${json.id}/${json.img[0]}">
+            <img style="width:100px; height:100px; overflow:visible;" src="${json.img[0]}">
 
 
                 <h3>${json.producto}</h3>
@@ -138,7 +139,7 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
                           Comprar
                       </button>
 
-                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${json.categoria}','${json.id}','${json.producto}','${json.precio}'])">
+                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${json.categoria}','${json.id}','${json.producto}','${json.precio}','${thisJSON.img[0]}'])">
                           Agregar al Carrito
                       </button>
 
@@ -171,7 +172,7 @@ function mostrarProducto(index,name,categoria) {
  
     console.log(thisJSON);
 
-    let urlFija=`https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoria}/`
+    let urlFija=`${thisJSON.img}`
     
 
     let labelStock=""
@@ -196,16 +197,16 @@ function mostrarProducto(index,name,categoria) {
 
             <!-- columna de 4 imagenes -->
             <div class="column">
-              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[1]?urlFija+name+'/'+thisJSON.img[1]:'./Image404.png'}" alt="./Image404.png">
-              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[2]?urlFija+name+'/'+thisJSON.img[2]:'./Image404.png'}" alt="./Image404.png">
-              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[3]?urlFija+name+'/'+thisJSON.img[3]:'./Image404.png'}" alt="./Image404.png">
-              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[4]?urlFija+name+'/'+thisJSON.img[4]:'./Image404.png'}" alt="./Image404.png">
+              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[1]?thisJSON.img[1]:'./Image404.png'}" alt="./Image404.png">
+              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[2]?thisJSON.img[2]:'./Image404.png'}" alt="./Image404.png">
+              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[3]?thisJSON.img[3]:'./Image404.png'}" alt="./Image404.png">
+              <img ${thisJSON.stock==0?'class="imgDisabled"':''} id="img404_4" class="img404" src="${thisJSON.img[4]?thisJSON.img[4]:'./Image404.png'}" alt="./Image404.png">
             </div>
 
             <!-- imagen seleccionada y titulo -->
             <div class="column">
 
-               <img class="img404 img404Big ${thisJSON.stock==0?'imgDisabled':''}" id="img404_0"  src="${urlFija+name+'/'+'imagen_0_'+name.replace('producto_','')}.jpg" alt="./Image404.png">
+               <img class="img404 img404Big ${thisJSON.stock==0?'imgDisabled':''}" id="img404_0"  src="${thisJSON.img[4]?thisJSON.img[4]:'./Image404.png'}" alt="./Image404.png">
               
             </div>
 
@@ -230,13 +231,13 @@ function mostrarProducto(index,name,categoria) {
                
                <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} class="buy" id="buy" onclick="comprarProductoIndividual(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}'])">Comprar</button>
 
-                <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}'])">
+                <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}','${thisJSON.img[0]}'])">
                           Agregar al Carrito
                       </button>
 
                <button class="buy" id="consultarVendedor">Consultar al Vendedor</button>
 
-               <button onclick="compartir('${thisJSON.categoria}','${thisJSON.id}')">Compartir</button>
+               <button onclick="compartir('${thisJSON.id}')">Compartir</button>
 
             </div>
 

@@ -21,71 +21,27 @@ divBusqueda.addEventListener('click', async () => {
     .trim()
     .split(/\s+/);
 
-  const promesas = [];
+    console.log(arrayTexto)
 
-  categoriasTextos.forEach((elemento, index) => {
-    
-    if(index<=10){
-            h3Texto.textContent = 'Buscando...'+index+"0%";
-    }
+  let resultados=[]
+
+
+    fetch(`https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/getProductosByKeyword?key=${arrayTexto}&limit=10`)
+  .then(r => r.json())
+  .then(d => {
   
-    if (index !== 0) {
-      promesas.push(traerJSON(arrayTexto, index));
-    }
-if(index==10){
-    h3Texto.textContent = "Resultados:";
-  }
-  });
+        resultados=d.productos;
+  console.log(resultados)
 
-
-
-  // esperar todas las categorías
-  const resultadosPorCategoria = await Promise.all(promesas);
-
-  // 🔥 UNIFICAR OBJETOS (NO flat)
-  const resultados = Object.assign({}, ...resultadosPorCategoria);
-
-  console.log("RESULTADOS:", resultados);
 
   cagarCardProductos(resultados);
 
+  
+  });
+
+
   spinnerBusqueda(false);
 });
-
-
-
-
-async function traerJSON(arrayTxt, id) { 
-    
-  const apiURL = `https://raw.githubusercontent.com/${owner}/${repo}/main/categorias/${categoriasTextos[id]}/datos.json`;
-
-  try {
-    const res = await fetch(apiURL);
-    if (!res.ok) return {};
-
-    const archivos = await res.json(); 
-
-    const coincidencias = {};
-
-    for (const key in archivos) {
-      const prod = archivos[key];
-
-      const coincide = arrayTxt.every(palabra =>
-        prod.producto.toLowerCase().includes(palabra)
-      );
-
-      if (coincide) {
-        coincidencias[key] = prod;
-      }
-    }
-
-    return coincidencias;
-
-  } catch (e) {
-    console.log("error "+e)
-    return {};
-  }
-}
 
 
 

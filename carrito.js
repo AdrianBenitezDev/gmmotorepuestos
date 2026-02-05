@@ -71,7 +71,7 @@ mostrarMensaje("✅ Producto Agregado!");
 
   } else {
     // Si no existe, agrego uno nuevo
-    arrayPedido.push([pro[0], pro[1], pro[2], pro[3], 1]);
+    arrayPedido.push([pro[0], pro[1], pro[2], pro[3], 1, pro[5]]);
   }
 
   document.getElementById("contadorCarrito").textContent = arrayPedido.length;
@@ -104,7 +104,7 @@ if(arrayPedido.length>0){
           <tr>
             <td><button onclick="menos(${index})" >-</button> ${pedido[4]} <button onclick="mas(${index})">+</button></td>
            
-            <td class=""><img class="imgPanelPedidos" src="https://raw.githubusercontent.com/AdrianBenitezDev/gmmotorepuestosBackend/main/categorias/${pedido[0]}/${pedido[1]}/imagen_0_${pedido[1].replace("producto_","")}.jpg"></td> 
+            <td class=""><img class="imgPanelPedidos" src="${pedido[5]}"</td> 
              <td class="product-name">${pedido[2]}</td>
             <td class="product-price">$${pedido[3]}</td>
             <td class=""><button onclick="dele(${index})">Borrar</button></td>
@@ -250,43 +250,43 @@ mostrarMensaje("❌ Error al realizar la compra");
 }
 
 
-//---------------------------------- deprecado --------------------------------------------------------
-async function comprarProductoRevisar(id,categoria,cantidad){
+// //---------------------------------- deprecado --------------------------------------------------------
+// async function comprarProductoRevisar(id,categoria,cantidad){
 
-    spinTrue()
-    mostrarMensaje("Preparando la compra");
+//     spinTrue()
+//     mostrarMensaje("Preparando la compra");
 
-  console.log("comprando..");
-  let array={
-      envio:false,
-      carrito:false,
-      cantidad:cantidad,
-      arrayCarrito:[],
-      cantidad:cantidadActual,
-      producto:{id:id,categoria:categoria},
-      metodo_pago: "local", //puede ser online
-  }
+//   console.log("comprando..");
+//   let array={
+//       envio:false,
+//       carrito:false,
+//       cantidad:cantidad,
+//       arrayCarrito:[],
+//       cantidad:cantidadActual,
+//       producto:{id:id,categoria:categoria},
+//       metodo_pago: "local", //puede ser online
+//   }
 
-  let resp =await fetch("https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/crearVentaPendiente", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(array)
-})
-
-
-  let res=await resp.json();
-  console.log(res)
-
-  if(res.ok==true){
-mostrarMensaje("✅ Compra Realizada");
-}else{
-mostrarMensaje("❌ Error al realizar la compra");
-}
+//   let resp =await fetch("https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/crearVentaPendiente", {
+//   method: "POST",
+//   headers: { "Content-Type": "application/json" },
+//   body: JSON.stringify(array)
+// })
 
 
+//   let res=await resp.json();
+//   console.log(res)
 
-  spinFalse()
-}
+//   if(res.ok==true){
+// mostrarMensaje("✅ Compra Realizada");
+// }else{
+// mostrarMensaje("❌ Error al realizar la compra");
+// }
+
+
+
+//   spinFalse()
+// }
 
 
 

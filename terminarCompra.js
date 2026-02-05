@@ -30,7 +30,7 @@ arrayPedido.forEach((pedido,index) => {
         <tr> 
         <td>${index+1}</td>
         <td>
-            <img class="imgPanelPedidos" src="https://raw.githubusercontent.com/AdrianBenitezDev/gmmotorepuestosBackend/main/categorias/${pedido[0]}/${pedido[1]}/imagen_0_${pedido[1].replace("producto_","")}.jpg">
+            <img class="imgPanelPedidos" src="${pedido[5]}">
         </td>
         <td>${pedido[2]}</td>
         <td>$ ${pedido[3]}</td>
