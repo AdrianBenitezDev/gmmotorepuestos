@@ -1,25 +1,25 @@
 // Inicialización de la aplicación:
 // 1. Leer parámetros desde la URL
+window.addEventListener("load", lecturaUrl);
 
-lecturaUrl()
 
 async function lecturaUrl() {
     const urlActual = new URL(window.location.href);
 
 const parametrosUrl=urlActual.searchParams;
 
-let urlCategoria=parametrosUrl.get("categoria");
 let urlId=parametrosUrl.get("id");
 // 2. Si existen, realizar un fetch
 
-if(urlCategoria&&urlId){
+if(urlId){
 
+    
      jsonActual=await traerProductoUrl(urlId)
 
      if(jsonActual.length>0){
         //ocultamos los demas div
         document.getElementById("DivCategorias").style.display="none"
-        mostrarProducto(0,urlId,urlCategoria) 
+        mostrarProducto(0,urlId) 
      }
 
     
@@ -32,7 +32,7 @@ if(urlCategoria&&urlId){
 
 async function traerProductoUrl(id) {
     //obtenemos el json con los datos del producto
-    const url=`https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/getProductosByKeyword?id=${id}`;
+    const url=`https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/getProductoById?id=${id}`;
     console.log(url)
     const resp=await fetch(url)
     

@@ -1,4 +1,30 @@
-2.62GB 15:14
+IMPORTANTE
+❌ CREAR HTML PARA LOS SERVICIOS (sera estatico?, debo crear toda la logica para cargarlos?)
+❌ Ver stock (EN EL CARRITO NO SE AGREGA LA CANTIDAD SELECCIONADA) 
+PRUEBAS
+❌crear 2 productos por categoria para probar
+❌crear 10 productos de una categoria para probar el navegador
+--PLUSS
+❌ 4_creacion de BOLETAS para el backend?
+❌ 5_importante registro de ventas
+❌ registro de accesos para la pagina para monitoriar
+
+✅ 7_CREAR EL BOTON CONSULTAR AL VENDEDOR
+❌FALTA HACER LA LOGICA
+
+----- IMAGEN
+❌ crear flyer para promocionar las ventas
+❌ 8_Crear logica para que al hacer clik en la imagen
+ se ponga PRINCIPAL
+❌ 9_al hacer click en VP vuelva a la imgagen_0_
+❌ 9_Crear logica para que al hacer clik en la imagen
+ PRINCIPAL se agrande en toda la pantalla
+❌ 10_cambiar estilo de comprar!
+
+-PLUS
+❌ 11_Cargar imagenes desde la pc (FALTA HACER LA LOGICA)
+✅ 12_Crear HTML para "Venta en el Local"
+
 
 ✅ 1_ Cantidad de card de json 10 maximo (navegador)
 ✅ 2- BUSCADOR DE PRODUCTOS input que busque coincidencias en los txt (PARA EDITAR/ELIMINAR)
@@ -11,38 +37,20 @@
 ✅ 9_agregar al json stock (un numero), en el frontend se renderiza 
 una etiqueta que dice sin stock cuando es igal a cero
 
-⚠️⚠️⚠️-LOGICA DE COMPRAS con el backend
+✅-LOGICA DE COMPRAS con el backend
 (ademas de whatapp como medio de compra, quiero que se envie todo el array
 del carrito a un objeto de fireBase para que prepare la compra)
 
 (llevamos registro de todas las ventas realizadas por la web)
 (firebase notifica a la web-admin )
 
-un json en github?
-
 conectado a la web BACKEND GIT HUB
 --notificación por whatapp o por gmail de la venta 
 
-⚠️⚠️⚠️ FIRESTORE
+✅ FIRESTORE
     //debemos realizar un fetch para asegurarnos el precio de los productos
     //y el percio total de los productos
 
-✅ 7_CREAR EL BOTON CONSULTAR AL VENDEDOR
-❌FALTA HACER LA LOGICA
-
-IMAGEN
-❌ 8_Crear logica para que al hacer clik en la imagen
- se ponga PRINCIPAL
-❌ 9_al hacer click en VP vuelva a la imgagen_0_
-❌ 9_Crear logica para que al hacer clik en la imagen
- PRINCIPAL se agrande en toda la pantalla
-❌ 10_cambiar estilo de comprar!
-
-
-
--PLUS
-❌ 11_Cargar imagenes desde la pc (FALTA HACER LA LOGICA)
-✅ 12_Crear HTML para "Venta en el Local"
 
 aray producto function addproduct
 //0 categoria
@@ -53,35 +61,6 @@ aray producto function addproduct
 
 cantidad producto precio
 
-
-IMPORTANTE
-❌ CREAR HTML PARA LOS SERVICIOS (sera estatico?, debo crear toda la logica para cargarlos?)
-❌ EL FRONTEND ACTUALMENTE ESTA CON RAW
-
-PRUEBAS
-
-❌crear 2 productos por categoria para probar
-❌crear 10 productos de una categoria para probar el navegador
-
-
-
---PLUSS
-
-❌ 4_creacion de BOLETAS para el backend?
-❌ 5_importante registro de ventas o accesos para la pagina para monitoriar
-
-
-se realizaran ventas online con archivos json en github?
-Por el momento solo ventas de catalogo por whatapp
-
-✅❌
-
-Cliente paga
-   ↓
-Mercado Pago (webhook)
-   ↓
-Firebase Cloud Function
-   ↓
-Firestore (guardar venta)
-   ↓
-Email / WhatsApp
+EXPICACIÓN FLYER
+WhatsApp no permite subir estados de forma automática, pero no te preocupes:
+nuestro sistema crea el flyer por vos y te lo deja listo para publicarlo en tu estado en menos de 1 minuto, sin complicaciones.

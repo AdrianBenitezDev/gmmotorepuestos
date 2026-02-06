@@ -71,7 +71,7 @@ mostrarMensaje("✅ Producto Agregado!");
 
   } else {
     // Si no existe, agrego uno nuevo
-    arrayPedido.push([pro[0], pro[1], pro[2], pro[3], 1, pro[5]]);
+    arrayPedido.push([pro[0], pro[1], pro[2], pro[3], 1, pro[4]]);
   }
 
   document.getElementById("contadorCarrito").textContent = arrayPedido.length;

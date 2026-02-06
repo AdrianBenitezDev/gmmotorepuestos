@@ -19,11 +19,11 @@ async function cargarProductos(id) {
 
     const archivos = await res.json();
 
-    jsonActual=archivos;
+    jsonActual=archivos.productos;
 
     console.log("JSON ACTUAL:")
 
-    console.log(archivos)
+    console.log(jsonActual)
 
     //restablecemos el div que contien las categorias
     document.getElementById("DivCategorias").innerHTML="";
@@ -139,11 +139,11 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
                           Comprar
                       </button>
 
-                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${json.categoria}','${json.id}','${json.producto}','${json.precio}','${thisJSON.img[0]}'])">
+                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${json.categoria}','${json.id}','${json.producto}','${json.precio}','${json.img[0]}'])">
                           Agregar al Carrito
                       </button>
 
-                      <button  onclick="mostrarProducto(${index},'${json.id}','${json.categoria}')">
+                      <button  onclick="mostrarProducto(${index},'${json.id}')">
                           Ver producto
                       </button>
                 </div>
@@ -165,7 +165,7 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
 
 
 
-function mostrarProducto(index,name,categoria) {
+function mostrarProducto(index,name) {
 
 
    let thisJSON=Object.values(jsonActual)[index]
