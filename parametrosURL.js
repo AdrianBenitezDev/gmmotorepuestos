@@ -1,32 +1,41 @@
+import { setJsonActual } from "./generarCardProductos.js";
+import { mostrarProducto } from "./generarCardProductos.js";
 // Inicialización de la aplicación:
 // 1. Leer parámetros desde la URL
 window.addEventListener("load", lecturaUrl);
 
-
 async function lecturaUrl() {
-    const urlActual = new URL(window.location.href);
+  const url = new URL(window.location.href);
+  const urlId = url.searchParams.get("id");
 
-const parametrosUrl=urlActual.searchParams;
+  if (!urlId) {
+    console.log("no hay parametros por URL");
+    return;
+  }
 
-let urlId=parametrosUrl.get("id");
-// 2. Si existen, realizar un fetch
+  try {
 
-if(urlId){
+    const json = await traerProductoUrl(urlId);
+
+    await setJsonActual(json)
+
+      document.getElementById("DivCategorias").style.display = "none";
+      mostrarProducto(0, urlId);
+
+      console.log("ANTES:", window.location.href);
+
+      // 🔥 limpiar URL
+      url.searchParams.delete("id");
+      window.history.replaceState({}, document.title, url.pathname);
+
+      console.log("DESPUES:", window.location.href);
 
     
-     jsonActual=await traerProductoUrl(urlId)
-
-     if(jsonActual.length>0){
-        //ocultamos los demas div
-        document.getElementById("DivCategorias").style.display="none"
-        mostrarProducto(0,urlId) 
-     }
-
-    
-}else{
-    console.log("no hay parametros por URL")
+  } catch (e) {
+    console.error("Error al traer los datos del producto", e);
+  }
 }
-}
+
 
 // 3. Completar la Vista Previa (VP) con la información recibida
 
@@ -40,7 +49,9 @@ async function traerProductoUrl(id) {
 
     console.log(archivos)
 
-    return json=Object.values(archivos).filter(elemento=>elemento.id==id)
+    return [archivos.producto]
+
+    // return let json=Object.values(archivos).filter(elemento=>elemento.id==id)
 
 }
 
@@ -48,29 +59,24 @@ async function traerProductoUrl(id) {
 //logia para compartir url
 //?categoria=mantenimiento&id=producto_647_40_18_412026
 
-async function compartir(id){
-   
-    let url =  new URL(window.location.href);
-    if(url.searchParams.get("categoria")){
+async function compartir(id) {
+  const url = new URL(window.location.href);
 
-    }else{
-       url+=`?id=${id}`;
+  // setea o reemplaza el id
+  url.searchParams.set("id", id);
 
-    }
   if (navigator.share) {
     try {
       await navigator.share({
         title: document.title,
         text: "Mirá este link 👇",
-        url: url
+        url: url.toString()
       });
-    } catch (err) {
+    } catch {
       console.log("Compartir cancelado");
     }
   } else {
-    // Fallback para PC
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(url.toString());
     alert("Link copiado al portapapeles 📋");
   }
-
 }

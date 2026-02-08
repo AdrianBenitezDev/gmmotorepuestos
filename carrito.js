@@ -59,7 +59,24 @@ function mostrarMensaje(mensaje) {
 //Agregar al carrito
 function addProduct(pro) {
 
-  
+  let cantidadActualStock=Number(document.getElementById("inputCantidad").textContent);
+
+  if(cantidadActualStock){
+
+  console.log(cantidadActualStock)  
+  pro[3]=cantidadActualStock;
+
+  }else{
+    pro[3]=1;
+  }
+
+  // ['${thisJSON.id}',           0
+  // '${thisJSON.producto}',      1
+  // '${thisJSON.precio}',        2
+  // '${cantidadActual}',         3
+  // '${thisJSON.img[0]}']        4
+
+
 mostrarMensaje("✅ Producto Agregado!");
 
 
@@ -67,11 +84,11 @@ mostrarMensaje("✅ Producto Agregado!");
 
   if (existe) {
     // Si existe, sumo cantidad
-    existe[4] += 1;
+    existe[3] = Number(existe[3]) + pro[3];
 
   } else {
     // Si no existe, agrego uno nuevo
-    arrayPedido.push([pro[0], pro[1], pro[2], pro[3], 1, pro[4]]);
+    arrayPedido.push([pro[0], pro[1], pro[2], Number(pro[3]), pro[4]]);
   }
 
   document.getElementById("contadorCarrito").textContent = arrayPedido.length;
@@ -82,6 +99,10 @@ let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
   localStorage.setItem('datos',JSON.stringify(datosGuardarLocalStorage))
   console.log("datos guardados en ls: ")
   console.log(datosGuardarLocalStorage)
+
+//RESETEAMO EL VALOR DE LA CANTIDAD DE STOCK SELECCIONADO
+  document.getElementById("inputCantidad").textContent='1';
+
 }
 
 
@@ -100,18 +121,32 @@ if(arrayPedido.length>0){
   let row="";
   arrayPedido.forEach((pedido,index)=>{
 
+    
+  // ['${thisJSON.id}',           0
+  // '${thisJSON.producto}',      1
+  // '${thisJSON.precio}',        2
+  // '${cantidadActual}',         3
+  // '${thisJSON.img[0]}']        4
+
+
+  //                       precio                      cantidad  
+  let subtotal= parseNumeroAR(pedido[2]) * parseNumeroAR(pedido[3]);
+
+  //sumamos al total
+  total += subtotal;
+
   row+=`
           <tr>
-            <td><button onclick="menos(${index})" >-</button> ${pedido[4]} <button onclick="mas(${index})">+</button></td>
+            <td><button onclick="menos(${index})" >-</button> ${pedido[3]} <button onclick="mas(${index})">+</button></td>
            
-            <td class=""><img class="imgPanelPedidos" src="${pedido[5]}"</td> 
-             <td class="product-name">${pedido[2]}</td>
-            <td class="product-price">$${pedido[3]}</td>
+            <td class=""><img class="imgPanelPedidos" src="${pedido[4]}"</td> 
+             <td class="product-name">${pedido[1]}</td>
+            <td class="product-price">$ ${pedido[2]} C/U</td>
+            <td class="product-subTotal">$ ${subtotal}</td>
             <td class=""><button onclick="dele(${index})">Borrar</button></td>
           </tr>
   `;
 
-  total += parseNumeroAR(pedido[3]) * parseNumeroAR(pedido[4]);
 
 
   })
@@ -133,8 +168,8 @@ function cerrarPanelPedidos(){
 
 function menos(id){
 
-if(arrayPedido.length>0 && arrayPedido[id][4]>1){
-arrayPedido[id][4]=parseNumeroAR(arrayPedido[id][4])-1;
+if(arrayPedido.length>0 && arrayPedido[id][3]>1){
+arrayPedido[id][3]=parseNumeroAR(arrayPedido[id][3])-1;
 
 verPedidos();
 }
@@ -142,8 +177,7 @@ verPedidos();
 }
 function mas(id){
  
- 
-arrayPedido[id][4]=parseNumeroAR(arrayPedido[id][4])+1;
+arrayPedido[id][3]=parseNumeroAR(arrayPedido[id][3])+1;
 
 
 verPedidos();
@@ -152,7 +186,7 @@ verPedidos();
 
 function dele(id){
 
-if(arrayPedido[id][4]&&arrayPedido.length>1){
+if(arrayPedido[id][3]&&arrayPedido.length>1){
  arrayPedido.splice(id, 1);
   document.getElementById("contadorCarrito").textContent = arrayPedido.length;
 
@@ -188,6 +222,20 @@ let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
 //y renderiza el carrito para que el usuario coloque la cantidad y aprete en finalizar compra
 
 function comprarProductoIndividual(pro) {
+  console.log(pro)
+  addProduct(pro);
+  verPedidos();
+}
+
+function comprarProductoIndividualVP(pro) {
+
+  //obtenemos el valor actual de stock seleccionado
+  let cantidadActualStock=Number(document.getElementById("inputCantidad").textContent);
+  console.log(cantidadActualStock)
+  
+  pro[3]=cantidadActualStock;
+
+  console.log(pro)
   addProduct(pro);
   verPedidos();
 }

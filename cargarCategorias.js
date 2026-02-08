@@ -1,18 +1,6 @@
+import {cargarProductos} from "./generarCardProductos.js"
+import {categoriasTextos} from "./config.js"
 
-//despues vemos como declaramos a esta variable como global
-const categoriasTextos = [
-  "Seleccione una categoria",
-  "motor",
-  "transmision",
-  "frenos",
-  "electricidad e iluminación",
-  "suspension",
-  "cubiertas y llantas",
-  "escapes",
-  "carroceria y plasticos",
-  "accesorios",
-  "mantenimiento"
-];
 
 
 function cargarCategorias(){
@@ -51,7 +39,7 @@ categoriasTextos.forEach((categoria,index)=>{
 
                 <br>
                 
-                <a class="button" onclick="cargarProductos(${index})">Ver Catálogo</a>
+                <a class="button" data-index="${index}">Ver Catálogo</a>
             </div>
             `;
 })
@@ -59,3 +47,15 @@ categoriasTextos.forEach((categoria,index)=>{
 
 //al iniciar la web cargamos las categorias por default
 cargarCategorias();
+
+document.addEventListener('click',(e)=>{
+
+  const card=e.target.closest('.button');
+  if(!card)return
+
+  let index=card.dataset.index;
+
+  cargarProductos(index)
+
+
+})

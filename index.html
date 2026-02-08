@@ -116,18 +116,48 @@
 
     <div class="panelBlack" id="panelBlack">
                 
-            <div class="panelPedido" id="panelPedidos"  style="margin-top: 120px;">
+            <div class="panelPedido" id="panelPedidos"  >
                 <div class="title"><h2>Revisar mi Pedido</h2></div>
                 <div class="cuerpoPedido" >
-                    <table class="view" id="cuerpoPedido">
-                        <thead><tr><td>Cantidad</td><td>Imagen</td><td>Producto</td><td>Precio</td><td>Acción</td></tr></thead>
-                        <tbody id="rowTabla"></tbody>
-                        <tr><td></td><td></td><td></td><td></td></tr>
-                        <tr class="total"><td>Total</td><td></td><td></td><td><h3 id="Total"></h3></td></tr>
-                    </table>
+                       
+
+                    <div class="tabla-scroll">
+
+                            <table class="view">
+                                <thead>
+                                <tr>
+                                    <td>Cantidad</td>
+                                    <td>Imagen</td>
+                                    <td>Producto</td>
+                                    <td>Precio Unitario</td>
+                                    <td>Sub Total </td>
+                                    <td>Acción</td>
+                                </tr>
+                                </thead>
+
+                                <tbody class="rowTablaPedido" id="rowTabla">
+                                <!-- acá tus tr dinámicos -->
+                                </tbody>
+
+                            </table>
+
+                    </div>
+                    
+                    <br>
+                    <hr>
+                    <div class="divIzq">
+                        
+                            <div class="total"><h3>Total de la Compra: </h3><h3 id="Total"></h3></div></tr>
+                        
+                    </div>
+                    <hr>
+
+
                 </div>
                 <div class="row"><button onclick="finalizarPedido()">Finalizar mi Pedido</button> <button onclick="cerrarPanelPedidos()">Continuar Comprando</button></div>
             </div>
+
+            
 
 </div>
 
@@ -219,11 +249,12 @@
     </div>
 </footer>
 
+<script type="module" src="./config.js"></script>
 <script src="./carrito.js"></script>
-<script src="./cargarCategorias.js"></script>
-<script src="./generarCardProductos.js"></script>
-<script src="./busqueda.js"></script>
+<script type="module" src="./cargarCategorias.js"></script>
+<script type="module" src="./generarCardProductos.js"></script>
+<script type="module" src="./busqueda.js"></script>
 <script src="./spinner.js"></script>
-<script src="./parametrosURL.js"></script>
+<script type="module" src="./parametrosURL.js"></script>
 
 </html>

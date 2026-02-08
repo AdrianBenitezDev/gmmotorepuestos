@@ -15,26 +15,30 @@ if(arrayPedido.length>0){
 //3 precio
 //4 canatidad del producto comprados
 
-// arrayPedido[0]
-// arrayPedido[1]
-// arrayPedido[2]
-// arrayPedido[3]
-// arrayPedido[4]  Cantidad de la Compras 
+
+
+  // id                  0
+  // producto            1
+  // precio              2
+  // cantidadActual      3
+  // img[0]              4
+
+
 let totalPagar=0;
 let cantidadPorPrecio=0;
 arrayPedido.forEach((pedido,index) => {
     
-    cantidadPorPrecio= parseNumeroAR(pedido[3]) * parseNumeroAR(pedido[4]);
+    cantidadPorPrecio= parseNumeroAR(pedido[2]) * parseNumeroAR(pedido[3]);
      totalPagar += cantidadPorPrecio;
     divListaProducto.innerHTML+=`
         <tr> 
         <td>${index+1}</td>
         <td>
-            <img class="imgPanelPedidos" src="${pedido[5]}">
+            <img class="imgPanelPedidos" src="${pedido[4]}">
         </td>
-        <td>${pedido[2]}</td>
-        <td>$ ${pedido[3]}</td>
-         <td>${pedido[4]}</td>
+        <td>${pedido[1]}</td>
+        <td>$ ${pedido[2]}</td>
+         <td>${pedido[3]}</td>
         <td>$ ${cantidadPorPrecio}</td>
         </tr>
     `;

@@ -1,12 +1,18 @@
-const owner = "AdrianBenitezDev";
-const repo = "gmmotorepuestosBackend";
-let jsonActual={};
+import {categoriasTextos} from "./config.js"
+
+export let jsonActual={};
 let categoriaActual=1;
 let cantidadActual=1;
 
 
+export async function setJsonActual(valor){
+  jsonActual=valor
+  console.log("-Se actalizo el valor de JsonActual:")
+  console.log(jsonActual)
+}
+
 //traemos los productos del json y lo guardamos en una varuable "JSONACTUAL"
-async function cargarProductos(id) {
+export async function cargarProductos(id) {
 
   categoriaActual=id
     
@@ -19,11 +25,7 @@ async function cargarProductos(id) {
 
     const archivos = await res.json();
 
-    jsonActual=archivos.productos;
-
-    console.log("JSON ACTUAL:")
-
-    console.log(jsonActual)
+    setJsonActual(archivos.productos)
 
     //restablecemos el div que contien las categorias
     document.getElementById("DivCategorias").innerHTML="";
@@ -52,7 +54,7 @@ async function cargarProductos(id) {
 
 }
 
-function navMas(actual){
+export function navMas(actual){
   let maximo=Number(Object.values(jsonActual).length)
   console.log(maximo)
   let numNav = Math.floor(maximo / 10);
@@ -66,7 +68,7 @@ function navMas(actual){
   }
 }
 
-function navMenos(actual){
+export function navMenos(actual){
    if(actual>1){
 
     let newActual=actual-1;
@@ -77,7 +79,7 @@ function navMenos(actual){
 
 }
 
-function panelProductoNav(numeroNavActual){
+export function panelProductoNav(numeroNavActual){
 
    let contenedorNav = document.getElementById("DivProductos");
     contenedorNav.innerHTML = ""; // limpiar antes
@@ -135,15 +137,15 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
                 <h3 style="color:red;">$ ${json.precio}</h3>
 
                 <div class="divBtn">
-                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="comprarProductoIndividual(['${json.categoria}','${json.id}','${json.producto}','${json.precio}'])">
+                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="comprarProductoIndividual(['${json.id}','${json.producto}','${json.precio}','${1}','${json.img[0]}'])">
                           Comprar
                       </button>
 
-                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${json.categoria}','${json.id}','${json.producto}','${json.precio}','${json.img[0]}'])">
+                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${json.id}','${json.producto}','${json.precio}',${1},'${json.img[0]}'])">
                           Agregar al Carrito
                       </button>
 
-                      <button  onclick="mostrarProducto(${index},'${json.id}')">
+                      <button class="mostrarProd" data-index=${index} data-id=${json.id}>
                           Ver producto
                       </button>
                 </div>
@@ -161,11 +163,25 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
   <div class="row navegador" id="navHeader"> 
     <button onclick="navMenos(${numeroNavActual})">&lt</button> Mostrando ${inicioNav} al ${terminarDeIterar} de ${cantidadProductos} Productos Totales <button onclick="navMas(${numeroNavActual})">&gt</button>
   </div>`;
+
+  //
+  contenedorNav.addEventListener("click",(e)=>{
+   const btn=e.target.closest(".mostrarProd") 
+   if(!btn)return;
+
+   let index=btn.dataset.index;
+   let id=btn.dataset.id;
+
+    mostrarProducto(index,id)
+  })
+
+
+
 }
 
 
 
-function mostrarProducto(index,name) {
+export function mostrarProducto(index,name) {
 
 
    let thisJSON=Object.values(jsonActual)[index]
@@ -206,12 +222,12 @@ function mostrarProducto(index,name) {
             <!-- imagen seleccionada y titulo -->
             <div class="column">
 
-               <img class="img404 img404Big ${thisJSON.stock==0?'imgDisabled':''}" id="img404_0"  src="${thisJSON.img[4]?thisJSON.img[4]:'./Image404.png'}" alt="./Image404.png">
+               <img class="img404 img404Big ${thisJSON.stock==0?'imgDisabled':''}" id="img404_0"  src="${thisJSON.img[0]?thisJSON.img[0]:'./Image404.png'}" alt="./Image404.png">
               
             </div>
 
             <!-- boton comprar y precio -->
-            <div class="column info" >
+            <div class="column info" id="infoP">
                <h2 class="tituloVP" id="tituloVP">${thisJSON.producto}</h2>
                <p class="precioVP" id="precioVP">$ ${thisJSON.precio}</p>
 
@@ -223,15 +239,15 @@ function mostrarProducto(index,name) {
 
                <div class="row">
 
-                  <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} onClick="menosCantidad()"> - </button>
+                  <button class="menosCantidad ${thisJSON.stock==0?' btnDisabled' :''}" ${thisJSON.stock==0? 'disabled':''}  > - </button>
                     <p id="inputCantidad">1</p>
-                  <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''}  onClick="masCantidad()"> + </button>
+                  <button class="masCantidad ${thisJSON.stock==0?' btnDisabled' :''}" ${thisJSON.stock==0? 'disabled':''} data-stock=${thisJSON.stock}  > + </button>
 
                </div>
                
-               <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} class="buy" id="buy" onclick="comprarProductoIndividual(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}'])">Comprar</button>
+               <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} class="buy" id="buy" onclick="comprarProductoIndividualVP(['${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}','${cantidadActual}','${thisJSON.img[0]}'])">Comprar</button>
 
-                <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${thisJSON.categoria}','${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}','${thisJSON.img[0]}'])">
+                <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}','${cantidadActual}','${thisJSON.img[0]}'])">
                           Agregar al Carrito
                       </button>
 
@@ -250,14 +266,50 @@ function mostrarProducto(index,name) {
             
             `;
 
-            document.getElementById("menosCantidad")
-
             document.getElementById("visorProducto")
                 .scrollIntoView({ behavior: "smooth", block: "start" });
+
+
+
+
+  // -------      menosCantidad 
+  document.getElementById("infoP").addEventListener('click',e=>{
+   
+    let btnMenosC=e.target.closest(".menosCantidad");
+  
+    if(!btnMenosC)return
+    menosCantidad();
+  })
+
+
+  // --------     masCantidad  ---------------
+  document.getElementById("infoP").addEventListener('click',e=>{
+    
+    let btnMasC=e.target.closest(".masCantidad");
+
+  
+    if(!btnMasC)return
+    
+    let stockMaximo=btnMasC.dataset.stock;
+
+    if( stockMaximo<=cantidadActual){
+      alert("No hay suficiente Stock por el momento para tu pedido")
+      return
+    }
+    
+
+    masCantidad();
+  })
+
+
+
+
+
+
     
 }
 
-function menosCantidad(){
+export function menosCantidad(){
   if(cantidadActual<=1){
 
   }else{
@@ -268,11 +320,13 @@ function menosCantidad(){
   }
 }
 
-function masCantidad(){
+export function masCantidad(){
+  
+  
   cantidadActual++
     let texto = String(cantidadActual);
+    
+  
 document.getElementById("inputCantidad").textContent=texto;
+
 }
-
-// cargarProductos();
-

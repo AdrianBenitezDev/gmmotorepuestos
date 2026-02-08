@@ -1,3 +1,6 @@
+import {panelProductoNav,jsonActual,setJsonActual} from './generarCardProductos.js'
+import {  } from './generarCardProductos.js';
+
 let divBusqueda = document.getElementById("btnBuscar");
 
 let h3Texto=document.getElementById("h3Resultados");
@@ -51,7 +54,7 @@ function cagarCardProductos(jsonObj){
   contenedor.innerHTML = "";
 
   // guardamos estado actual
-  jsonActual = jsonObj;
+  setJsonActual(jsonObj);
 
   // si no hay resultados
   if (Object.keys(jsonObj).length === 0) {

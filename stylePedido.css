@@ -114,3 +114,51 @@ width:30px;
 .title{
     padding: 20px;
 }
+
+
+
+
+/*   SCROLL    */
+.cuerpoPedido {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.tabla-scroll {
+  max-height: 55vh;        /* 🔥 ajustá según tu panel */
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Para que thead quede alineado */
+.view {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Scroll suave */
+.tabla-scroll {
+  scroll-behavior: smooth;
+}
+
+.total{
+        display: flex;
+    right: 0;
+    bottom: 0;
+    justify-content: flex-end;
+    border-radius: 12px;
+    border: solid;
+    padding: 5px;
+    width: max-content;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.divIzq{
+    display: flex;
+    justify-content: flex-end;
+}
+
