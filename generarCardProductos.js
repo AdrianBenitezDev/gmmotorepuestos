@@ -1,4 +1,7 @@
 import {categoriasTextos} from "./config.js"
+import {cargarCategorias} from './cargarCategorias.js'
+import {compartir} from './parametrosURL.js'
+import {addProduct,comprarProductoIndividual} from './carrito.js'
 
 export let jsonActual={};
 let categoriaActual=1;
@@ -39,7 +42,7 @@ export async function cargarProductos(id) {
 
     document.getElementById("categoriaSeleccionada").innerHTML=`
     
-    <button onclick="cargarCategorias()">Inicio</button>
+    <button class="btnCargarCategorias" >Inicio</button>
     <h3 style="margin-left:15px">Categoria: <span style="color:red;"> ${categoriaMayus} </span></h3>
     
     `;            
@@ -52,9 +55,11 @@ export async function cargarProductos(id) {
 
   panelProductoNav(1)
 
+ 
+
 }
 
-export function navMas(actual){
+function navMas(actual){
   let maximo=Number(Object.values(jsonActual).length)
   console.log(maximo)
   let numNav = Math.floor(maximo / 10);
@@ -65,17 +70,23 @@ export function navMas(actual){
 
  panelProductoNav(newActual)
 
+ return newActual;
+
   }
 }
 
-export function navMenos(actual){
+function navMenos(actual){
    if(actual>1){
 
     let newActual=actual-1;
 
  panelProductoNav(newActual)
+
+ 
+ return newActual;
    
 }
+return 1;
 
 }
 
@@ -104,7 +115,7 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
 
   contenedorNav.innerHTML+=`<div class="row navegador" id="navHeader"> 
   
-      <button onclick="navMenos(${numeroNavActual})">&lt</button> Mostrando ${inicioNav} al ${terminarDeIterar} de ${cantidadProductos} Productos Totales <button onclick="navMas(${numeroNavActual})">&gt</button>
+      <button id="navMenos" data-numero=${numeroNavActual} >&lt</button> Mostrando ${inicioNav} al ${terminarDeIterar} de ${cantidadProductos} Productos Totales <button id="navMas" data-numero=${numeroNavActual}>&gt</button>
 
   </div>
   <br>`
@@ -137,11 +148,21 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
                 <h3 style="color:red;">$ ${json.precio}</h3>
 
                 <div class="divBtn">
-                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="comprarProductoIndividual(['${json.id}','${json.producto}','${json.precio}','${1}','${json.img[0]}'])">
+                      <button class="comprarProductoIndividual${json.stock==0?' btnDisabled" disabled':'"'} data-producto='${JSON.stringify([
+                        json.id,
+                          json.producto,
+                          json.precio,
+                          1,
+                          json.img[0]])}'>
                           Comprar
                       </button>
 
-                      <button ${json.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${json.id}','${json.producto}','${json.precio}',${1},'${json.img[0]}'])">
+                      <button class="addProduct${json.stock==0?'btnDisabled" disabled':'"'} data-producto='${JSON.stringify([
+                        json.id,
+                        json.producto,
+                        json.precio,
+                        1,
+                        json.img[0]])}'>
                           Agregar al Carrito
                       </button>
 
@@ -161,25 +182,32 @@ let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;
   
   <br>
   <div class="row navegador" id="navHeader"> 
-    <button onclick="navMenos(${numeroNavActual})">&lt</button> Mostrando ${inicioNav} al ${terminarDeIterar} de ${cantidadProductos} Productos Totales <button onclick="navMas(${numeroNavActual})">&gt</button>
-  </div>`;
+  
+     <button id="navMenos_Bottom" data-numero=${numeroNavActual} >&lt</button> Mostrando ${inicioNav} al ${terminarDeIterar} de ${cantidadProductos} Productos Totales <button id="navMas_Bottom" data-numero=${numeroNavActual}>&gt</button>
 
-  //
-  contenedorNav.addEventListener("click",(e)=>{
-   const btn=e.target.closest(".mostrarProd") 
-   if(!btn)return;
+    </div>`;
 
-   let index=btn.dataset.index;
-   let id=btn.dataset.id;
+  //aquiNav
+  
+  //colocamos los listener del navegador
+  
+  function handleNav(e, fn) {
+  const el = e.currentTarget;
+  let value = Number(el.dataset.numero);
+  if (Number.isNaN(value)) return;
 
-    mostrarProducto(index,id)
-  })
+  el.dataset.numero = fn(value);
+}
+
+document.getElementById('navMenos').addEventListener("click", e => handleNav(e, navMenos));
+document.getElementById('navMas').addEventListener("click", e => handleNav(e, navMas));
+document.getElementById('navMenos_Bottom').addEventListener("click", e => handleNav(e, navMenos));
+document.getElementById('navMas_Bottom').addEventListener("click", e => handleNav(e, navMas));
+
 
 
 
 }
-
-
 
 export function mostrarProducto(index,name) {
 
@@ -245,15 +273,34 @@ export function mostrarProducto(index,name) {
 
                </div>
                
-               <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} class="buy" id="buy" onclick="comprarProductoIndividualVP(['${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}','${cantidadActual}','${thisJSON.img[0]}'])">Comprar</button>
+                          <button 
+                            class="comprarProductoIndividualVP${thisJSON.stock == 0 ? 'btnDisabled' : ''}"
+                            ${thisJSON.stock == 0 ? 'disabled' : ''}
+                            id="buy"
+                            data-producto='${JSON.stringify([
+                              thisJSON.id,
+                              thisJSON.producto,
+                              thisJSON.precio,
+                              cantidadActual,
+                              thisJSON.img[0]
+                            ])}'
+                          >
+                            Comprar
+                          </button>
 
-                <button ${thisJSON.stock==0?'class="btnDisabled" disabled':''} onclick="addProduct(['${thisJSON.id}','${thisJSON.producto}','${thisJSON.precio}','${cantidadActual}','${thisJSON.img[0]}'])">
+                <button class="addProduct${thisJSON.stock==0?' btnDisabled" disabled':'"'} 
+                data-producto='${JSON.stringify([
+                  thisJSON.id,
+                  thisJSON.producto,
+                  thisJSON.precio,
+                  cantidadActual,
+                  thisJSON.img[0]])}'>
                           Agregar al Carrito
                       </button>
 
-               <button class="buy" id="consultarVendedor">Consultar al Vendedor</button>
+               <button class="consultarVendedor" id="consultarVendedor" data-producto=${thisJSON.producto} data-precio=${thisJSON.precio} data-id=${thisJSON.id}>Consultar al Vendedor</button>
 
-               <button onclick="compartir('${thisJSON.id}')">Compartir</button>
+               <button class="compartir" data-id=${thisJSON.id} >Compartir</button>
 
             </div>
 
@@ -329,4 +376,149 @@ export function masCantidad(){
   
 document.getElementById("inputCantidad").textContent=texto;
 
+}
+
+
+listenerMostrarProducto();
+listenerCargarProducto();
+  listenerPanelNav();
+// -------   ---------
+function listenerMostrarProducto(){
+
+  let divMP= document.getElementById("visorProducto");
+
+divMP.addEventListener('click',e=>{
+  
+  let btn=e.target.className;
+
+  switch(btn){
+    case "comprarProductoIndividualVP":
+
+              let btnData=e.target.closest(".comprarProductoIndividualVP");
+
+              let arrayProducto=JSON.parse(btnData.dataset.producto);
+
+              console.log(arrayProducto)
+
+              comprarProductoIndividual(arrayProducto)
+              break;
+    case "addProduct":
+
+              let data=e.target.closest(".addProduct");
+
+              let arrayAddProduc=JSON.parse(data.dataset.producto);
+
+              console.log(arrayAddProduc)
+
+              addProduct(arrayAddProduc)
+              break;
+    case "consultarVendedor":
+
+    let btnWhatme=e.target.closest(".consultarVendedor");
+    let name=btnWhatme.dataset.name;
+    let precio=btnWhatme.dataset.precio;
+    let cantidad=document.getElementById("inputCantidad")?.textContent || 1
+    let id=btnWhatme.dataset.id;
+
+    //ejecutamos la funcion directamente
+                  contactarVendedor({
+                nombre: name,
+                precio: precio,
+                cantidad: cantidad,
+                id:id
+              });
+
+    break;
+
+    case "compartir":
+
+    let btnCompartir=e.target.closest(".compartir");
+    let idProduct=btnCompartir.dataset.id;
+     compartir(idProduct);
+     break;
+
+    
+  }
+})
+
+}
+
+function listenerCargarProducto(){
+
+  let divCategoriaSeleccionada= document.getElementById("categoriaSeleccionada");
+
+  divCategoriaSeleccionada.addEventListener('click',e=>{
+
+    let btn=e.target.closest(".btnCargarCategorias");
+    if(!btn) return;
+
+    cargarCategorias();
+
+  })
+
+
+}
+
+
+function listenerPanelNav(){
+  
+  
+let contenedorNav = document.getElementById("DivProductos");
+
+  contenedorNav.addEventListener("click",(e)=>{
+
+    const btnClick=e.target.className;
+
+    switch(btnClick){
+
+      case "mostrarProd":
+
+                        const btn=e.target.closest(".mostrarProd") 
+                    if(!btn)return;
+
+                    let index=btn.dataset.index;
+                    let id=btn.dataset.id;
+
+                      mostrarProducto(index,id)
+        break;
+        
+      case "comprarProductoIndividual":
+
+      let btnCI=e.target.closest(".comprarProductoIndividual")
+
+      let array=JSON.parse(btnCI.dataset.producto);
+
+      comprarProductoIndividual(array);
+
+        break;
+        
+      case "addProduct":
+           let btnAP=e.target.closest(".addProduct")
+
+      let arrayAP=JSON.parse(btnAP.dataset.producto);
+
+      addProduct(arrayAP);
+        break;
+
+    }
+   
+  })
+}
+
+function contactarVendedor(producto) {
+  const telefono = "5491121807862";
+
+  const mensaje = `
+Hola 👋
+Quiero consultar por este producto:
+
+📦 ${producto.nombre}
+💲 Precio: $${producto.precio}
+🔢 Cantidad: ${producto.cantidad}
+
+https://gmmotorepuestos.com.ar/${producto.id}
+  `.trim();
+
+  const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, "_blank");
 }

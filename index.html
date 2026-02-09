@@ -18,9 +18,9 @@
 </div>
 
     <!-- div de carrito -->
-     <div class="container-Pedido">
+     <div class="container-Pedido" id="container-Pedido">
 
-                <div class="btn2 btn-primary icon-container row" onclick="verPedidos()">
+                <div class="btn2 btn-primary icon-container row" class="verPedidos">
                     <div class="column">
                         <img class="iconPedido" src="./imagenes/delivery.png" style="width: 30px; height: 30px;">
                         <span class="tuPedido">Carrito</span>  
@@ -154,7 +154,7 @@
 
 
                 </div>
-                <div class="row"><button onclick="finalizarPedido()">Finalizar mi Pedido</button> <button onclick="cerrarPanelPedidos()">Continuar Comprando</button></div>
+                <div class="row"><button class="finalizarPedido">Finalizar mi Pedido</button> <button class="cerrarPanelPedidos">Continuar Comprando</button></div>
             </div>
 
             
@@ -245,12 +245,12 @@
     <!-- COPY -->
     <div class="footer-copy">
         © 2025 GM MotoRepuestos — Todos los derechos reservados.
-        <a href="./login/login.html" >Acceder</a>
+        <!-- <a href="./login/login.html" >Acceder</a> -->
     </div>
 </footer>
 
 <script type="module" src="./config.js"></script>
-<script src="./carrito.js"></script>
+<script type="module" src="./carrito.js"></script>
 <script type="module" src="./cargarCategorias.js"></script>
 <script type="module" src="./generarCardProductos.js"></script>
 <script type="module" src="./busqueda.js"></script>

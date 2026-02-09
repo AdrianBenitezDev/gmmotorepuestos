@@ -3,7 +3,10 @@ import {categoriasTextos} from "./config.js"
 
 
 
-function cargarCategorias(){
+
+export function cargarCategorias(){
+
+  // alert("ejecutando cargar categorias")
 
 document.getElementById("DivProductos").innerHTML="";
 
@@ -17,7 +20,7 @@ let divCategoria=document.getElementById("DivCategorias");
 divCategoria.innerHTML='';
 document.getElementById("categoriaSeleccionada").innerHTML=`
     
-    <button onclick="cargarCategorias()">Inicio</button>
+    <button class="btnCargarCategoria" >Inicio</button>
     <h3 style="margin-left:15px">Seleccione una Categoria</h3>
     
     `; 
@@ -59,3 +62,21 @@ document.addEventListener('click',(e)=>{
 
 
 })
+
+irInicio();
+export function irInicio(){
+  
+  let divCargarCategoria=document.getElementById("categoriaSeleccionada");
+
+//ir a Inicio
+divCargarCategoria.addEventListener('click',e=>{
+
+  let btnCat=e.target.closest(".btnCargarCategoria");
+
+  if(!btnCat)return
+
+  cargarCategorias()
+
+
+})
+}

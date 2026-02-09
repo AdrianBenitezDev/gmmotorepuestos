@@ -1,7 +1,9 @@
 import {panelProductoNav,jsonActual,setJsonActual} from './generarCardProductos.js'
-import {  } from './generarCardProductos.js';
 
-let divBusqueda = document.getElementById("btnBuscar");
+
+let btnBusqueda = document.getElementById("btnBuscar");
+
+let inputBusqueda = document.getElementById("inputBusqueda");
 
 let h3Texto=document.getElementById("h3Resultados");
 
@@ -9,9 +11,25 @@ let h3Texto=document.getElementById("h3Resultados");
 document.getElementById("inputBusqueda").focus();
 
 
-divBusqueda.addEventListener('click', async () => {
+btnBusqueda.addEventListener('click', async () => {
 
-  document.getElementById("DivCategorias").innerHTML = ``;
+ buscar();
+});
+
+inputBusqueda.addEventListener('keyup',(e)=>{
+
+
+  e.preventDefault();
+
+  if(e.key == 'Enter'){
+    buscar();
+  }
+
+})
+
+
+function buscar(){
+   document.getElementById("DivCategorias").innerHTML = ``;
   document.getElementById("DivProductos").innerHTML = ``;
 
   spinnerBusqueda(true);
@@ -44,9 +62,7 @@ divBusqueda.addEventListener('click', async () => {
 
 
   spinnerBusqueda(false);
-});
-
-
+}
 
 function cagarCardProductos(jsonObj){
     

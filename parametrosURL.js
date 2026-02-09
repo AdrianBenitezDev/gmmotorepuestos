@@ -59,7 +59,7 @@ async function traerProductoUrl(id) {
 //logia para compartir url
 //?categoria=mantenimiento&id=producto_647_40_18_412026
 
-async function compartir(id) {
+export async function compartir(id) {
   const url = new URL(window.location.href);
 
   // setea o reemplaza el id

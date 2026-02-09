@@ -1,6 +1,15 @@
 IMPORTANTE
 ❌ CREAR HTML PARA LOS SERVICIOS (sera estatico?, debo crear toda la logica para cargarlos?)
+
+- se modificara al renderizar (renderizado especial)
+
 ✅ Ver stock (EN EL CARRITO NO SE AGREGA LA CANTIDAD SELECCIONADA) 
+✅ Falta Logica CONSULTAR AL VENDEDORES por whatapp
+⚠️ PRECIO DE COMPRA/ PRECIO DE VENTA (Backend)
+✅ Agregar a los nav listener
+-PLUS
+❌ 11_Cargar imagenes desde la pc (FALTA HACER LA LOGICA)
+
 PRUEBAS
 ✅ crear 2 productos por categoria para probar
 ❌crear 10 productos de una categoria para probar el navegador
@@ -12,10 +21,10 @@ PRUEBAS
 -- Probar Compras ya que modificamos el el arrayCarrito (posiciones)
 
 ✅ 7_CREAR EL BOTON CONSULTAR AL VENDEDOR
-❌FALTA HACER LA LOGICA
+✅ FALTA HACER LA LOGICA
 
 ----- IMAGEN
-❌ crear flyer para promocionar las ventas
+✅ crear flyer para promocionar las ventas
 ❌ 8_Crear logica para que al hacer clik en la imagen
  se ponga PRINCIPAL
 ❌ 9_al hacer click en VP vuelva a la imgagen_0_
@@ -23,8 +32,6 @@ PRUEBAS
  PRINCIPAL se agrande en toda la pantalla
 ❌ 10_cambiar estilo de comprar!
 
--PLUS
-❌ 11_Cargar imagenes desde la pc (FALTA HACER LA LOGICA)
 ✅ 12_Crear HTML para "Venta en el Local"
 
 

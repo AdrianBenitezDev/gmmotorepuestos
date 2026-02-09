@@ -3,6 +3,7 @@ let datos=JSON.parse(localStorage.getItem('datos'));
 let user=datos?.usuario||"user_"+Math.random(4);
 let arrayPedido=datos?.carrito||[];
 
+
 if(arrayPedido.length>0){
   
   document.getElementById("contadorCarrito").textContent = arrayPedido.length;
@@ -57,9 +58,9 @@ function mostrarMensaje(mensaje) {
 
 
 //Agregar al carrito
-function addProduct(pro) {
+export function addProduct(pro) {
 
-  let cantidadActualStock=Number(document.getElementById("inputCantidad").textContent);
+  let cantidadActualStock=Number(document.getElementById("inputCantidad")?.textContent) || 1 ;
 
   if(cantidadActualStock){
 
@@ -101,8 +102,11 @@ let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
   console.log(datosGuardarLocalStorage)
 
 //RESETEAMO EL VALOR DE LA CANTIDAD DE STOCK SELECCIONADO
+try{
+
   document.getElementById("inputCantidad").textContent='1';
 
+}catch{}
 }
 
 
@@ -110,6 +114,16 @@ function irDivBuscar(){
   document.getElementById("DivSeach").scrollIntoView({
     behavior: "smooth"
   });
+}
+listenerVerPedido()
+function listenerVerPedido(){
+
+  document.addEventListener("click",e=>{
+    let btn=e.target.closest(".container-Pedido");
+    if(!btn)return;
+    verPedidos();
+  })
+
 }
 
 function verPedidos(){
@@ -137,13 +151,14 @@ if(arrayPedido.length>0){
 
   row+=`
           <tr>
-            <td><button onclick="menos(${index})" >-</button> ${pedido[3]} <button onclick="mas(${index})">+</button></td>
+            <td><button class="menos" data-index=${index} >-</button> ${pedido[3]} <button class="mas" data-index=${index}>+</button></td>
            
             <td class=""><img class="imgPanelPedidos" src="${pedido[4]}"</td> 
              <td class="product-name">${pedido[1]}</td>
             <td class="product-price">$ ${pedido[2]} C/U</td>
             <td class="product-subTotal">$ ${subtotal}</td>
-            <td class=""><button onclick="dele(${index})">Borrar</button></td>
+            
+            <td> <button class="dele" data-index=${index}>Borrar</button></td>
           </tr>
   `;
 
@@ -160,12 +175,51 @@ alert("no selecciono ningún producto!")
 }
 }
 
+listenerPanelPedidos();
+
+function listenerPanelPedidos(){
+  
+let divPanelPedidos=document.getElementById("panelPedidos");
+
+  divPanelPedidos.addEventListener('click',(e)=>{
+
+    let btn=e.target.className;
+
+    switch(btn){
+      case "mas":
+        let valueMas=e.target.closest(".mas");
+        let indexMas=valueMas.dataset.index;
+        mas(indexMas);
+
+        break;
+      case "menos":
+          let valueMenos=e.target.closest(".menos");
+        let indexMenos=valueMenos.dataset.index;
+        menos(indexMenos);
+        break;
+      case "dele":
+        let valueDele=e.target.closest(".dele")
+        let indexDele=valueDele.dataset.index;
+        dele(indexDele)
+        break;
+       case "cerrarPanelPedidos":
+        cerrarPanelPedidos();
+         break;
+       case "finalizarPedido":
+        finalizarPedido();
+          break;
+    }
+
+  })
+}
+
+
 function cerrarPanelPedidos(){
   document.getElementById("panelBlack").style.display="none";
 }
 
 
-
+//modifica el contador de stock del panel de pedidos
 function menos(id){
 
 if(arrayPedido.length>0 && arrayPedido[id][3]>1){
@@ -221,24 +275,12 @@ let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
 //agrega el producto al carrito
 //y renderiza el carrito para que el usuario coloque la cantidad y aprete en finalizar compra
 
-function comprarProductoIndividual(pro) {
+export function comprarProductoIndividual(pro) {
   console.log(pro)
   addProduct(pro);
   verPedidos();
 }
 
-function comprarProductoIndividualVP(pro) {
-
-  //obtenemos el valor actual de stock seleccionado
-  let cantidadActualStock=Number(document.getElementById("inputCantidad").textContent);
-  console.log(cantidadActualStock)
-  
-  pro[3]=cantidadActualStock;
-
-  console.log(pro)
-  addProduct(pro);
-  verPedidos();
-}
 
 
 //fncion asociada al btn del carrito de compras
