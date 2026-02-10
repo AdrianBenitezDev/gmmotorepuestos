@@ -6,6 +6,11 @@ import { spinTrue, spinFalse } from "./spinner.js";
 
 export function cargarCategorias(){
 
+    
+let h3Texto=document.getElementById("h3Resultados");
+h3Texto.textContent=''
+
+
   // alert("ejecutando cargar categorias")
 
 document.getElementById("DivProductos").innerHTML="";
@@ -55,16 +60,18 @@ document.addEventListener('click',(e)=>{
 
   const card=e.target.closest('.button');
   if(!card)return
-  spinTrue();
+ 
   let index=card.dataset.index;
 
   cargarProductos(index)
 
-  spinFalse();
 })
 
 irInicio();
 export function irInicio(){
+
+
+
   
   let divCargarCategoria=document.getElementById("categoriaSeleccionada");
 
@@ -74,6 +81,7 @@ divCargarCategoria.addEventListener('click',e=>{
   let btnCat=e.target.closest(".btnCargarCategoria");
 
   if(!btnCat)return
+
 
   cargarCategorias()
 

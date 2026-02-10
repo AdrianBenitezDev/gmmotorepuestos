@@ -6,7 +6,7 @@ let btnBusqueda = document.getElementById("btnBuscar");
 
 let inputBusqueda = document.getElementById("inputBusqueda");
 
-let h3Texto=document.getElementById("h3Resultados");
+
 
 //al iniciar le damos focus a la barra de busqueda
 document.getElementById("inputBusqueda").focus();
@@ -65,7 +65,6 @@ function buscar(){
   });
 
 
-  spinnerBusqueda(false);
 }
 
 function cagarCardProductos(jsonObj){

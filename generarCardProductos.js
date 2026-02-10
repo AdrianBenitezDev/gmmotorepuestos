@@ -2,6 +2,7 @@ import {categoriasTextos} from "./config.js"
 import {cargarCategorias} from './cargarCategorias.js'
 import {compartir} from './parametrosURL.js'
 import {addProduct,comprarProductoIndividual} from './carrito.js'
+import { spinTrue, spinFalse, spinnerBusqueda } from "./spinner.js"
 
 export let jsonActual={};
 let categoriaActual=1;
@@ -17,6 +18,7 @@ export async function setJsonActual(valor){
 //traemos los productos del json y lo guardamos en una varuable "JSONACTUAL"
 export async function cargarProductos(id) {
 
+  spinTrue();
   categoriaActual=id
     
     //let apiURL = `https://api.github.com/repos/${owner}/${repo}/contents/categorias/${categoriasTextos[id]}`;
@@ -57,6 +59,7 @@ export async function cargarProductos(id) {
 
  
 
+  spinFalse();
 }
 
 function navMas(actual){
@@ -91,11 +94,15 @@ return 1;
 }
 
 export function panelProductoNav(numeroNavActual){
-
+let h3Texto=document.getElementById("h3Resultados");
    let contenedorNav = document.getElementById("DivProductos");
     contenedorNav.innerHTML = ""; // limpiar antes
 
   let cantidadProductos=Object.values(jsonActual).length;
+
+  if(cantidadProductos==0){
+    h3Texto.textContent="⚠️  Actualmente No hay Productos para esta categoria"
+  }
 
   //calculamos los intervamos del nav
   let inicioNav=(Number(numeroNavActual)*10)-10;
@@ -206,6 +213,7 @@ document.getElementById('navMas_Bottom').addEventListener("click", e => handleNa
 
 
 
+  spinnerBusqueda(false);
 
 }
 
