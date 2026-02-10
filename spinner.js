@@ -1,5 +1,8 @@
 export function spinnerBusqueda(boleano){
-  console.log("ESPINER: "+boleano)
+  console.log("spinnerBusqueda:")
+  console.log(boleano)
+
+  
     let spin=document.getElementById("overlayBusqueda")
     if(boleano){
         spin.style.display="flex";
