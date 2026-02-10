@@ -30,10 +30,14 @@ inputBusqueda.addEventListener('keyup',(e)=>{
 
 
 function buscar(){
-   document.getElementById("DivCategorias").innerHTML = ``;
-  document.getElementById("DivProductos").innerHTML = ``;
+
 
   spinnerBusqueda(true);
+
+
+  document.getElementById("DivCategorias").innerHTML = ``;
+  document.getElementById("DivProductos").innerHTML = ``;
+
 
 
   const input = document.getElementById("inputBusqueda");
