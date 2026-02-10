@@ -415,7 +415,7 @@ divMP.addEventListener('click',e=>{
     case "consultarVendedor":
 
     let btnWhatme=e.target.closest(".consultarVendedor");
-    let name=btnWhatme.dataset.name;
+    let name=btnWhatme.dataset.producto;
     let precio=btnWhatme.dataset.precio;
     let cantidad=document.getElementById("inputCantidad")?.textContent || 1
     let id=btnWhatme.dataset.id;
@@ -512,9 +512,12 @@ function contactarVendedor(producto) {
 Hola 👋
 Quiero consultar por este producto:
 
+
 📦 ${producto.nombre}
 💲 Precio: $${producto.precio}
 🔢 Cantidad: ${producto.cantidad}
+
+lo vi en:
 
 https://gmmotorepuestos.com.ar/${producto.id}
   `.trim();
