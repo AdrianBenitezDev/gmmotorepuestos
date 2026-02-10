@@ -1,6 +1,6 @@
 import {cargarProductos} from "./generarCardProductos.js"
 import {categoriasTextos} from "./config.js"
-
+import { spinTrue, spinFalse } from "./spinner.js";
 
 
 
@@ -55,12 +55,12 @@ document.addEventListener('click',(e)=>{
 
   const card=e.target.closest('.button');
   if(!card)return
-
+  spinTrue();
   let index=card.dataset.index;
 
   cargarProductos(index)
 
-
+  spinFalse();
 })
 
 irInicio();
