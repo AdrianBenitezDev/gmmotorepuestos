@@ -1,4 +1,4 @@
-function spinnerBusqueda(boleano){
+export function spinnerBusqueda(boleano){
     let spin=document.getElementById("overlayBusqueda")
     if(boleano){
         spin.style.display="block";
@@ -9,9 +9,9 @@ function spinnerBusqueda(boleano){
 
 
 // ====== SPINNER ======
-function spinFalse() {
+export function spinFalse() {
   document.getElementById('overlay').style.display = "none";
 }
-function spinTrue() {
+export function spinTrue() {
   document.getElementById('overlay').style.display = "flex";
 }
