@@ -77,7 +77,7 @@ const bricksBuilder = mp.bricks();
 
   // ✅ CONTINÚA SOLO SI TODO ESTÁ OK
   const res = await fetch(
-    "https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/crearPago",
+    "https://crearPago-xhlrljateq-uc.a.run.app",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

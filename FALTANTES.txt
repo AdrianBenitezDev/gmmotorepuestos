@@ -1,11 +1,15 @@
 IMPORTANTE
 ❌ CREAR HTML PARA LOS SERVICIOS (sera estatico?, debo crear toda la logica para cargarlos?)
 
+https://loginadmin-xhlrljateq-uc.a.run.app
+
+-xhlrljateq-uc.a.run.app
+
 - se modificara al renderizar (renderizado especial)
 
 ✅ Ver stock (EN EL CARRITO NO SE AGREGA LA CANTIDAD SELECCIONADA) 
 ✅ Falta Logica CONSULTAR AL VENDEDORES por whatapp
-⚠️ PRECIO DE COMPRA/ PRECIO DE VENTA (Backend)
+✅ PRECIO DE COMPRA/ PRECIO DE VENTA (Backend)
 ✅ Agregar a los nav listener
 -PLUS
 ❌ 11_Cargar imagenes desde la pc (FALTA HACER LA LOGICA)

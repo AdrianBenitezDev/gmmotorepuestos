@@ -46,8 +46,7 @@ function buscar(){
 
   let resultados=[]
 
-
-    fetch(`https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/getProductosByKeyword?key=${arrayTexto}&limit=10`)
+    fetch(`https://getProductosByKeyword-xhlrljateq-uc.a.run.app?key=${arrayTexto}&limit=10`)
   .then(r => r.json())
   .then(d => {
   

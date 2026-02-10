@@ -316,7 +316,7 @@ async function comprarCarrito(){
 
   //obtenemos el array de productos y lo enviamos al backend
 
-  let resp =await fetch("https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/crearVentaPendiente", {
+  let resp =await fetch("https://crearVentaPendiente-xhlrljateq-uc.a.run.app", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(datos)

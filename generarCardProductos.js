@@ -21,7 +21,7 @@ export async function cargarProductos(id) {
     
     //let apiURL = `https://api.github.com/repos/${owner}/${repo}/contents/categorias/${categoriasTextos[id]}`;
     //raw
-      const apiURL = `https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/getProductosByCategoria?categoria=${encodeURIComponent(categoriasTextos[categoriaActual])}`;
+      const apiURL = `https://getProductosByCategoria-xhlrljateq-uc.a.run.app?categoria=${encodeURIComponent(categoriasTextos[categoriaActual])}`;
 
 
     const res = await fetch(apiURL);

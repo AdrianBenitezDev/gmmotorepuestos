@@ -41,7 +41,7 @@ async function lecturaUrl() {
 
 async function traerProductoUrl(id) {
     //obtenemos el json con los datos del producto
-    const url=`https://us-central1-gmmotorepuestos-ventas.cloudfunctions.net/getProductoById?id=${id}`;
+    const url=`https://getProductoById-xhlrljateq-uc.a.run.app?id=${id}`;
     console.log(url)
     const resp=await fetch(url)
     
