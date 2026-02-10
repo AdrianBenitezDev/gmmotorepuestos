@@ -517,7 +517,6 @@ Quiero consultar por este producto:
 💲 Precio: $${producto.precio}
 🔢 Cantidad: ${producto.cantidad}
 
-lo vi en:
 
 https://gmmotorepuestos.com.ar/${producto.id}
   `.trim();
