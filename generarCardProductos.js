@@ -102,9 +102,9 @@ export function panelProductoNav(numeroNavActual){
   
   let finNav=inicioNav+10;
 
-  console.log(cantidadProductos)//1
-  console.log(inicioNav)//0
-  console.log(finNav)//10
+  // console.log(cantidadProductos)//1
+  // console.log(inicioNav)//0
+  // console.log(finNav)//10
 
   //obtenemos el fin de la iteración
 let terminarDeIterar=cantidadProductos<finNav?cantidadProductos:finNav;

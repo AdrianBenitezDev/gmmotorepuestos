@@ -1,3 +1,4 @@
+import {spinnerBusqueda} from './spinner.js'
 import {panelProductoNav,jsonActual,setJsonActual} from './generarCardProductos.js'
 
 

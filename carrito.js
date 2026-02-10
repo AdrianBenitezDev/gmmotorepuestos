@@ -1,3 +1,5 @@
+import {spinTrue,spinFalse} from './spinner.js'
+
 //window.onload = traerCategorias();
 let datos=JSON.parse(localStorage.getItem('datos'));
 let user=datos?.usuario||"user_"+Math.random(4);
@@ -290,6 +292,8 @@ async function finalizarPedido(id, categoria, cant, buy) {
   let datosGuardarLocalStorage={usuario:user,carrito:arrayPedido};
 
   localStorage.setItem('datos',JSON.stringify(datosGuardarLocalStorage))
+
+
 //abrimos la web para pagar
   // redirección dentro del mismo sitio
   window.location.href = `/revcompra.html`;

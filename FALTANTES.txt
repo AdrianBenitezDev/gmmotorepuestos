@@ -5,6 +5,8 @@ https://loginadmin-xhlrljateq-uc.a.run.app
 
 -xhlrljateq-uc.a.run.app
 
+FALTA ENVIAR AL BACKEND EL NUMERO DE TELEFONO CUANDO SE REALIZA UNA COMPRA (REVISAR)
+
 - se modificara al renderizar (renderizado especial)
 
 ✅ Ver stock (EN EL CARRITO NO SE AGREGA LA CANTIDAD SELECCIONADA) 
